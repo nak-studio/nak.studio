@@ -32,7 +32,7 @@ body, html {
     z-index: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     height: 100%;
     color: white;
     text-align: center;
