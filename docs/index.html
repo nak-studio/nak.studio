@@ -1,78 +1,114 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="eu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nak.studio | Art & Visual Exploration</title>
+    <meta
+      name="description"
+      content="Art that connects like a shared glance. Explore the high-contrast paintings, original collections, and visual journeys of contemporary artist Naiara Abaroa."
+    />
+    <meta
+      name="keywords"
+      content="Naiara Abaroa, nak studio, contemporary art, visual art, painting, watercolor, high contrast art, original artwork, collections"
+    />
+    <meta name="author" content="Naiara Abaroa" />
+    <link rel="canonical" href="https://nak.studio" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>nak.studio</title>
-    <meta name="description" content="Paint to seek. Create to feel. Design for beauty">
-    <link rel="shortcut icon" href="assets/favicon.ico">
-    <link rel="stylesheet" href="vendor/nakds.css">
-    <link rel="stylesheet" href="css/site.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://nak.studio" />
+    <meta property="og:title" content="nak.studio | Art & Visual Exploration" />
+    <meta
+      property="og:description"
+      content="Art that connects like a shared glance. Explore original collections and visual journeys by contemporary artist Naiara Abaroa."
+    />
+    <meta
+      property="og:image"
+      content="https://nak.studio/assets/og-image.jpg"
+    />
+    <meta property="og:site_name" content="nak.studio" />
 
-<body>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://nak.studio" />
+    <meta name="twitter:title" content="nak.studio | Art & Visual Exploration" />
+    <meta
+      name="twitter:description"
+      content="Art that connects like a shared glance. Explore original collections and visual journeys."
+    />
+    <meta
+      name="twitter:image"
+      content="https://nak.studio/assets/og-image.jpg"
+    />
+    <link rel="shortcut icon" href="assets/favicon.ico" />
+    <link rel="stylesheet" href="vendor/nakds.css" />
+    <link rel="stylesheet" href="css/site.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
     <div class="home-split">
-        <div class="home-video">
-            <video autoplay muted loop playsinline>
-                <source src="assets/home-video.webm" type="video/webm">
-                <source src="assets/cover.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="home-brand">
-            <img class="logo" src="assets/nak-studio-logo.svg" alt="NAK Studio Logo">
-        </div>
+      <div class="home-video">
+        <video autoplay muted loop playsinline>
+          <source src="assets/home-video.webm" type="video/webm" />
+          <source src="assets/cover.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="home-brand">
+        <img
+          class="logo"
+          src="assets/nak-studio-logo.svg"
+          alt="NAK Studio Logo"
+        />
+      </div>
     </div>
 
-        <div id="site-nav"></div>
-        <script>
-            // Load shared navigation and set dynamic links
-            fetch('partials/nav.html')
-                .then(res => res.text())
-                .then(html => {
-                    document.getElementById('site-nav').innerHTML = html;
-                    // Dynamically set navigation links based on page depth
-                    var path = window.location.pathname;
-                    var docsIdx = path.indexOf('/docs/');
-                    var afterDocs = path.slice(docsIdx + 6); // skip '/docs/'
-                    var depth = afterDocs.split('/').length - 1;
-                    var prefix = '';
-                    if (depth === 0) prefix = '';
-                    else prefix = '../'.repeat(depth);
+    <div id="site-nav"></div>
+    <script>
+      // Load shared navigation and set dynamic links
+      fetch("partials/nav.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("site-nav").innerHTML = html;
+          // Dynamically set navigation links based on page depth
+          var path = window.location.pathname;
+          var docsIdx = path.indexOf("/docs/");
+          var afterDocs = path.slice(docsIdx + 6); // skip '/docs/'
+          var depth = afterDocs.split("/").length - 1;
+          var prefix = "";
+          if (depth === 0) prefix = "";
+          else prefix = "../".repeat(depth);
 
-                    var nav = document.getElementById('site-nav');
-                    if (nav) {
-                        var links = [
-                            { sel: '.nav-home', file: 'index.html' },
-                            { sel: '.nav-work', file: 'work/index.html' },
-                            { sel: '.nav-collectors', file: 'collectors/index.html' },
-                            { sel: '.nav-about', file: 'about/index.html' }
-                        ];
-                        links.forEach(link => {
-                            var el = nav.querySelector(link.sel);
-                            if (el) {
-                                el.setAttribute('href', prefix + link.file);
-                                el.classList.remove('active');
-                            }
-                        });
-                        // Highlight the active link
-                        var current = window.location.pathname.split('/').pop();
-                        if (!current || current === '') current = 'index.html';
-                        links.forEach(link => {
-                            if (current === link.file.split('/').pop()) {
-                                var el = nav.querySelector(link.sel);
-                                if (el) el.classList.add('active');
-                            }
-                        });
-                    }
-                });
-        </script>
+          var nav = document.getElementById("site-nav");
+          if (nav) {
+            var links = [
+              { sel: ".nav-home", file: "index.html" },
+              { sel: ".nav-work", file: "work/index.html" },
+              { sel: ".nav-collectors", file: "collectors/index.html" },
+              { sel: ".nav-about", file: "about/index.html" }
+            ];
+            links.forEach((link) => {
+              var el = nav.querySelector(link.sel);
+              if (el) {
+                el.setAttribute("href", prefix + link.file);
+                el.classList.remove("active");
+              }
+            });
+            // Highlight the active link
+            var current = window.location.pathname.split("/").pop();
+            if (!current || current === "") current = "index.html";
+            links.forEach((link) => {
+              if (current === link.file.split("/").pop()) {
+                var el = nav.querySelector(link.sel);
+                if (el) el.classList.add("active");
+              }
+            });
+          }
+        });
+    </script>
 
     <script type="module">
-      import { initI18n } from './modules/i18n.js';
+      import { initI18n } from "./modules/i18n.js";
       initI18n();
     </script>
-</body>
-
+  </body>
 </html>
