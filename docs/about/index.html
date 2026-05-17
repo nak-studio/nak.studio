@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — nak.studio</title>
+    <link rel="shortcut icon" href="../assets/favicon.ico">
+    <link rel="stylesheet" href="../vendor/nakds.css">
+    <link rel="stylesheet" href="../css/site.css">
+</head>
+<body>
+  <div class="page-wrapper">
+
+    <div id="site-nav"></div>
+  <script>
+    // Load shared navigation and set dynamic links
+    fetch('../partials/nav.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('site-nav').innerHTML = html;
+        // Dynamically set navigation links based on page depth
+        var path = window.location.pathname;
+        var docsIdx = path.indexOf('/docs/');
+        var afterDocs = path.slice(docsIdx + 6); // skip '/docs/'
+        var depth = afterDocs.split('/').length - 1;
+        var prefix = '';
+        if (depth === 0) prefix = '';
+        else prefix = '../'.repeat(depth);
+
+        var nav = document.getElementById('site-nav');
+        if (nav) {
+          var links = [
+            { sel: '.nav-home', file: 'index.html' },
+            { sel: '.nav-work', file: 'work/index.html' },
+            { sel: '.nav-collectors', file: 'collectors/index.html' },
+            { sel: '.nav-about', file: 'about/index.html' }
+          ];
+          links.forEach(link => {
+            var el = nav.querySelector(link.sel);
+            if (el) {
+              el.setAttribute('href', prefix + link.file);
+              el.classList.remove('active');
+            }
+          });
+          // Highlight the active link
+          var current = window.location.pathname.split('/').pop();
+          if (!current || current === '') current = 'index.html';
+          links.forEach(link => {
+            if (current === link.file.split('/').pop()) {
+              var el = nav.querySelector(link.sel);
+              if (el) el.classList.add('active');
+            }
+          });
+        }
+      });
+  </script>
+
+    <header class="page-header">
+      <h1 data-i18n="aboutTitle">Niri buruz</h1>
+    </header>
+
+    <main>
+      <section class="nk-section">
+        <div class="nk-container--content nk-container--narrow">
+          <div class="about-content">
+            <div class="about-avatar">
+              <img src="../assets/naiara-avatar.jpeg" alt="Naiara Abaroa" class="nk-avatar--large">
+            </div>
+            <div class="about-text">
+              <h2 class="nk-heading--3">Naiara Abaroa</h2>
+              <p data-i18n="bio">Naiara Abaroa artista bisuala naiz, Bilbon bizi eta lan egiten dudana. Nire lana barne-bilaketaren inguruan mugitzen da, akuarela eta mihisea bitarteko nagusi bezala erabiliz.</p>
+              <div class="about-contact">
+                <a href="mailto:naiara@nak.studio">naiara@nak.studio</a>
+                <a href="https://instagram.com/nak.studio" target="_blank" rel="noopener">@nak.studio</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="nk-section statement-section">
+        <div class="nk-container--text nk-text-align--center">
+          <h2 data-i18n="artistStatement">Artista Adierazpena</h2>
+          <div class="statement-text" data-i18n="statementText"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer nk-footer nk-bg--k-10 nk-text-align--center">
+      <div class="nk-container--content">
+        <div class="footer-contact">
+          <a href="mailto:naiara@nak.studio">naiara@nak.studio</a>
+          <span class="footer-dot"></span>
+          <a href="https://instagram.com/nak.studio" target="_blank" rel="noopener">@nak.studio</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 nak.studio &mdash; Basque Country</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script type="module">
+    import { initI18n } from '../modules/i18n.js';
+    initI18n();
+  </script>
+</body>
+</html>

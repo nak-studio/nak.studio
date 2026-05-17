@@ -1,0 +1,69 @@
+{
+  "$schema": "../schemas/writing.schema.json",
+  "writings": [
+    {
+      "id": "writing-004-eu",
+      "title": "Bila",
+      "text": "​Bila nabil. Ez dakit zeren bila. Barne estadu lasai baten bila, erantzun unibersalen bila, injjar bibrante baten bila, argitxasunen bila, jakiturijjen bila. Eta ez dakit nun topa. Intuiziñian, pinturan, naturan. Hor dao? Ez dakit.\n​Eta ez badot iñoz topaten? Kolorietan nabil bila, formetan, animali totemikuetan eta jangoiko arrotzetan. Barruan eta kanpuan nabil bila, pasatako memorijjan eta etorkizuneko proiekziñoietan. Ondo nago, ez dot ezer gehijjao bihar baña sena beti darabitx bila.",
+      "topics": [
+        "bila",
+        "prozesua",
+        "barne-bila"
+      ],
+      "edition": {
+        "type": "text",
+        "number": null
+      },
+      "exhibition": {
+        "name": "Lehen urtea",
+        "year": 2026
+      },
+      "imageGallery": [
+        {
+          "id": "img-w-004",
+          "url": "./assets/bila.jpeg",
+          "alt": "Bila",
+          "order": 1
+        }
+      ],
+      "visibility": "public",
+      "language": "eu",
+      "relatedArtworks": [],
+      "slug": "bila",
+      "createdAt": "2026-01-02",
+      "updatedAt": "2026-01-02"
+    },
+    {
+      "id": "writing-004-en",
+      "title": "Search",
+      "text": "I'm searching. I don't know what for. Searching for a calm inner state, for universal answers, for a vibrant place, for clarity, for knowledge. And I don't know where to find it. In intuition, in painting, in nature. Is it there? I don't know.\nAnd what if I never find it? I search in colors, in forms, in totemic animals and foreign gods. I search within and without, in past memories and future projections. I'm fine, I don't need anything more, but I always feel myself searching.",
+      "topics": [
+        "search",
+        "process",
+        "inner-search"
+      ],
+      "edition": {
+        "type": "text",
+        "number": null
+      },
+      "exhibition": {
+        "name": "Lehen urtea",
+        "year": 2026
+      },
+      "imageGallery": [
+        {
+          "id": "img-w-004-en",
+          "url": "./assets/bila.jpeg",
+          "alt": "Search",
+          "order": 1
+        }
+      ],
+      "visibility": "public",
+      "language": "en",
+      "relatedArtworks": [],
+      "slug": "search",
+      "createdAt": "2026-01-02",
+      "updatedAt": "2026-01-02"
+    }
+  ]
+}

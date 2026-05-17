@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="eu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collectors — nak.studio</title>
+    <link rel="shortcut icon" href="../assets/favicon.ico" />
+    <link rel="stylesheet" href="../vendor/nakds.css" />
+    <link rel="stylesheet" href="../css/site.css" />
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <div id="site-nav"></div>
+      <script>
+        // Load shared navigation and set dynamic links
+        fetch("../partials/nav.html")
+          .then((res) => res.text())
+          .then((html) => {
+            document.getElementById("site-nav").innerHTML = html;
+            // Dynamically set navigation links based on page depth
+            var path = window.location.pathname;
+            var docsIdx = path.indexOf("/docs/");
+            var afterDocs = path.slice(docsIdx + 6); // skip '/docs/'
+            var depth = afterDocs.split("/").length - 1;
+            var prefix = "";
+            if (depth === 0) prefix = "";
+            else prefix = "../".repeat(depth);
+
+            var nav = document.getElementById("site-nav");
+            if (nav) {
+              var links = [
+                { sel: ".nav-home", file: "index.html" },
+                { sel: ".nav-work", file: "work/index.html" },
+                { sel: ".nav-collectors", file: "collectors/index.html" },
+                { sel: ".nav-about", file: "about/index.html" }
+              ];
+              links.forEach((link) => {
+                var el = nav.querySelector(link.sel);
+                if (el) {
+                  el.setAttribute("href", prefix + link.file);
+                  el.classList.remove("active");
+                }
+              });
+              // Highlight the active link
+              var current = window.location.pathname.split("/").pop();
+              if (!current || current === "") current = "index.html";
+              links.forEach((link) => {
+                if (current === link.file.split("/").pop()) {
+                  var el = nav.querySelector(link.sel);
+                  if (el) el.classList.add("active");
+                }
+              });
+            }
+          });
+      </script>
+      <main>
+        <section id="login-section" class="login-gate">
+          <div class="login-card">
+            <div class="login-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg>
+            </div>
+            <h2 class="login-title" data-i18n="collectorArea">
+              Biltzaileen Eremua
+            </h2>
+            <p class="login-subtitle" data-i18n="loginPrompt">
+              Sartu pasahitza
+            </p>
+            <form id="login-form">
+              <input
+                type="password"
+                id="password-input"
+                autocomplete="off"
+                placeholder=""
+              />
+              <p id="login-error" class="error-msg" data-i18n="loginError">
+                Pasahitz okerra
+              </p>
+              <button
+                type="submit"
+                class="nk-button nk-button--color"
+                data-i18n="loginButton"
+              >
+                Sartu
+              </button>
+            </form>
+            <div class="login-divider"></div>
+            <p class="login-note" data-i18n="loginNote" data-i18n-html>
+              Sarbide-datuak jasotzeko, idatzi
+              <a href="mailto:naiara@nak.studio">naiara@nak.studio</a> helbidera
+              edo bidali DM
+              <a
+                href="https://instagram.com/nak.studio"
+                target="_blank"
+                rel="noopener"
+                >@nak.studio</a
+              >
+              Instagramera.
+            </p>
+          </div>
+        </section>
+
+        <!-- Protected content -->
+        <section
+          id="collector-content"
+          class="nk-section"
+          style="display: none"
+        >
+          <div class="nk-container--content nk-container--narrow">
+            <div style="text-align: right; margin-bottom: var(--medium)">
+              <a
+                href="#"
+                id="logout-link"
+                style="font-size: 0.8rem; text-decoration: none"
+                data-i18n="logout"
+                >Irten</a
+              >
+            </div>
+            <h2
+              class="nk-heading--2 nk-text-align--center"
+              data-i18n="priceList"
+            >
+              Prezioen Zerrenda
+            </h2>
+            <div id="price-list"></div>
+            <div class="nk-section">
+              <h3 class="nk-heading--3" data-i18n="shippingInfo">
+                Bidalketa informazioa
+              </h3>
+              <p data-i18n="shippingText" class="nk-font--medium">
+                Bidalketa mundu osora. Prezioak piezaren tamainaren arabera
+                aldatzen dira. Jarri harremanetan xehetasun gehiagorako.
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer nk-footer nk-bg--k-10 nk-text-align--center">
+        <div class="nk-container--content">
+          <div class="footer-contact">
+            <a href="mailto:naiara@nak.studio">naiara@nak.studio</a>
+            <span class="footer-dot"></span>
+            <a
+              href="https://instagram.com/nak.studio"
+              target="_blank"
+              rel="noopener"
+              >@nak.studio</a
+            >
+          </div>
+          <p class="footer-copy">
+            &copy; 2026 nak.studio &mdash; Basque Country
+          </p>
+        </div>
+      </footer>
+    </div>
+
+    <div id="drawer-dimmer" class="nk-dimmer"></div>
+    <div
+      id="artwork-drawer"
+      class="nk-drawer"
+      tabindex="-1"
+      aria-modal="true"
+      role="dialog"
+    >
+      <button
+        id="close-drawer"
+        class="nk-button nk-drawer__close"
+        aria-label="Itxi"
+        data-i18n="close"
+      >
+        ✕ Itxi
+      </button>
+      <div id="drawer-content"></div>
+    </div>
+
+    <script type="module">
+      import { initI18n, t } from "../modules/i18n.js";
+      import { loadData } from "../modules/dataService.js";
+      import { state } from "../modules/state.js";
+      import { escapeHtml } from "../utils/dom.js";
+      import { openDrawer } from "../portfolio/modules/drawer.js";
+      import { filterByTopic } from "../portfolio/modules/filters.js";
+
+      // Always initialize drawer JS and event handlers globally (parity with main site)
+      window.bilaApp = window.bilaApp || {};
+      const closeBtn = document.getElementById("close-drawer");
+      if (closeBtn) {
+        closeBtn.onclick = () => {
+          document
+            .getElementById("artwork-drawer")
+            .classList.remove("nk-is-open");
+          document
+            .getElementById("drawer-dimmer")
+            .classList.remove("nk-is-open");
+        };
+      }
+      import("../portfolio/modules/drawer.js").then((mod) => {
+        window.bilaApp.changeMainImage = mod.changeMainImage;
+        window.bilaApp.closeDrawer = mod.closeDrawer;
+        if (typeof mod.setupDrawer === "function") mod.setupDrawer();
+      });
+      // Expose filterByTopic for topic badge interactivity
+      window.bilaApp.filterByTopic = filterByTopic;
+
+      const PASS_HASH = "6e616b73747564696f"; // hex of "nakstudio"
+
+      function checkPassword(input) {
+        const hex = Array.from(new TextEncoder().encode(input))
+          .map((b) => b.toString(16).padStart(2, "0"))
+          .join("");
+        return hex === PASS_HASH;
+      }
+
+      function renderPriceList() {
+        const artworks = state.getArtworks();
+        const container = document.getElementById("price-list");
+        if (!container || artworks.length === 0) return;
+
+        let html = '<table class="price-table">';
+        html += `<thead><tr>
+          <th></th>
+          <th>${escapeHtml(t("artworks"))}</th>
+          <th>${escapeHtml(t("medium"))}</th>
+          <th>${escapeHtml(t("dimensions"))}</th>
+          <th>${escapeHtml(t("price"))}</th>
+          <th>${escapeHtml(t("status"))}</th>
+        </tr></thead><tbody>`;
+
+        artworks.forEach((a, idx) => {
+          const statusKey =
+            a.status === "private" ? "privateCollection" : a.status;
+          const dotClass =
+            a.status === "sold" || a.status === "private"
+              ? "status-dot--sold"
+              : "status-dot--available";
+          const dims = a.dimensions
+            ? `${a.dimensions.width} × ${a.dimensions.height} ${a.dimensions.unit}`
+            : "—";
+          const price = a.price ? `${a.price.amount} ${a.price.currency}` : "—";
+          const thumb = a.images && a.images.length > 0 ? a.images[0].url : "";
+
+          html += `<tr>
+            <td class="price-table__thumb"><img src="${escapeHtml(thumb)}" alt="${escapeHtml(a.title)}" data-artwork-idx="${idx}" style="cursor:pointer;"></td>
+            <td class="price-table__title" data-artwork-idx="${idx}" style="cursor:pointer;">${escapeHtml(a.title)}</td>
+            <td data-label="${escapeHtml(t("medium"))}">${escapeHtml((a.medium || []).join(", "))}</td>
+            <td data-label="${escapeHtml(t("dimensions"))}">${dims}</td>
+            <td data-label="${escapeHtml(t("price"))}">${price}</td>
+            <td data-label="${escapeHtml(t("status"))}"><span class="status-dot ${dotClass}" style="display:inline-block; position:static; margin-right:var(--x-small);"></span>${escapeHtml(t(statusKey))}</td>
+          </tr>`;
+        });
+
+        html += "</tbody></table>";
+        container.innerHTML = html;
+
+        // Add click handlers to images and titles
+        container
+          .querySelectorAll("img[data-artwork-idx], .price-table__title")
+          .forEach((el) => {
+            el.addEventListener("click", (e) => {
+              const idx = el.getAttribute("data-artwork-idx");
+              if (idx !== null) {
+                openDrawer(artworks[idx]);
+              }
+            });
+          });
+        // Ensure drawer interactive features/styles are available
+        window.bilaApp = window.bilaApp || {};
+        document.getElementById("close-drawer").onclick = () => {
+          document
+            .getElementById("artwork-drawer")
+            .classList.remove("nk-is-open");
+          document
+            .getElementById("drawer-dimmer")
+            .classList.remove("nk-is-open");
+        };
+        import("../portfolio/modules/drawer.js").then((mod) => {
+          window.bilaApp.changeMainImage = mod.changeMainImage;
+          window.bilaApp.closeDrawer = mod.closeDrawer;
+          if (typeof mod.setupDrawer === "function") mod.setupDrawer();
+        });
+      }
+
+      document.getElementById("logout-link").addEventListener("click", (e) => {
+        e.preventDefault();
+        sessionStorage.removeItem("collector-auth");
+        document.getElementById("collector-content").style.display = "none";
+        document.getElementById("login-section").style.display = "";
+        document.getElementById("password-input").value = "";
+      });
+
+      document.getElementById("login-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const input = document.getElementById("password-input").value;
+        if (checkPassword(input)) {
+          document.getElementById("login-section").style.display = "none";
+          document.getElementById("collector-content").style.display = "";
+          sessionStorage.setItem("collector-auth", "1");
+          renderPriceList();
+        } else {
+          document.getElementById("login-error").style.display = "block";
+        }
+      });
+
+      async function init() {
+        await initI18n();
+        await loadData();
+
+        // Auto-login if already authenticated this session
+        if (sessionStorage.getItem("collector-auth") === "1") {
+          document.getElementById("login-section").style.display = "none";
+          document.getElementById("collector-content").style.display = "";
+          renderPriceList();
+        }
+
+        document.addEventListener("languageChanged", async () => {
+          await loadData();
+          if (
+            document.getElementById("collector-content").style.display !==
+            "none"
+          ) {
+            renderPriceList();
+          }
+        });
+      }
+
+      init();
+    </script>
+  </body>
+</html>

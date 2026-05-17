@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadow Portraits — nak.studio</title>
+    <link rel="shortcut icon" href="../../assets/favicon.ico">
+    <link rel="stylesheet" href="../../vendor/nakds.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+  <div class="page-wrapper">
+
+    <nav class="site-nav">
+      <a href="../../" data-i18n="home">Hasiera</a>
+      <a href="../" data-i18n="work">Lanak</a>
+      <a href="../../collectors/" data-i18n="collectors">Biltzaileak</a>
+      <a href="../../about/" data-i18n="about">Niri buruz</a>
+      <button class="lang-btn active" data-lang="eu">EU</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </nav>
+
+    <header class="page-header">
+      <h1 data-i18n="shadowPortraits">Itzalen Erretratuak</h1>
+      <p data-i18n="canvases">Mihiseak</p>
+    </header>
+
+    <!-- Filter Bar -->
+    <div id="filter-bar" class="nk-section nk-bg--k-8" style="display: none;">
+      <div class="nk-container--content nk-text-align--center">
+        <div id="filter-display"></div>
+      </div>
+    </div>
+
+    <main>
+      <section class="nk-section">
+        <div class="nk-container--content">
+          <div id="artworks" class="nk-grid-2@md nk-gap--large"></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Drawer -->
+    <div id="drawer-dimmer" class="nk-dimmer"></div>
+    <div id="artwork-drawer" class="nk-drawer">
+      <button id="close-drawer" class="nk-button" style="margin-bottom: var(--large);" data-i18n="close">✕ Itxi</button>
+      <div id="drawer-content"></div>
+    </div>
+
+    <footer class="site-footer nk-footer nk-bg--k-10 nk-text-align--center">
+      <div class="nk-container--content">
+        <div class="footer-contact">
+          <a href="mailto:naiara@nak.studio">naiara@nak.studio</a>
+          <span class="footer-dot"></span>
+          <a href="https://instagram.com/nak.studio" target="_blank" rel="noopener">@nak.studio</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 nak.studio &mdash; Basque Country</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script type="module">
+    import { initI18n } from '../../modules/i18n.js';
+    import { loadData, getArtworksByCollection } from '../../modules/dataService.js';
+    import { displayArtworks } from '../../modules/artworkRenderer.js';
+    import { filterByTopic, clearFilter, updateFilterDisplay } from '../../modules/filters.js';
+    import { openDrawer, closeDrawer, changeMainImage, setupDrawer } from '../../modules/drawer.js';
+
+    window.nakApp = { openDrawer, closeDrawer, changeMainImage, filterByTopic, clearFilter };
+
+    async function render() {
+      await loadData();
+      const artworks = getArtworksByCollection('shadow-portraits');
+      displayArtworks(artworks);
+      updateFilterDisplay();
+    }
+
+    async function init() {
+      await initI18n();
+      await render();
+      setupDrawer();
+      document.addEventListener('languageChanged', render);
+      document.addEventListener('filterChanged', render);
+    }
+
+    init();
+  </script>
+</body>
+</html>

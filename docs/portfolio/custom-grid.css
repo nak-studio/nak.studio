@@ -1,0 +1,23 @@
+/* Custom grid for shadow-portraits: 2 columns on medium screens and up */
+.nk-grid-2@md {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--large);
+}
+@media (min-width: 768px) {
+  .nk-grid-2@md {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Custom grid for bila-collection: 3 columns on medium screens and up */
+.nk-grid-3@md {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--large);
+}
+@media (min-width: 768px) {
+  .nk-grid-3@md {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

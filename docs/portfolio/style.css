@@ -1,0 +1,215 @@
+.item-caption .status-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.item-caption .status-title-row h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+/* Status dot for artwork card */
+.status-dot {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #f25d5d;
+  margin-left: 1rem;
+  vertical-align: middle;
+}
+
+.status-title-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: var(--medium);
+}
+/* Font Faces with semantic names */
+@font-face {
+  font-family: 'human';
+  src: url('../assets/fonts/LiuJianMaoCao-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Font system: human (handwriting) and machine (sans-serif) */
+:root {
+  --font-human: 'human', cursive, sans-serif;
+  --font-machine: 'Lato', sans-serif;
+  --base-font: var(--font-human);
+  --font-size--large: 1.5rem;
+
+}
+
+/* Increase base font size for better readability */
+html {
+  font-size: 20px;
+}
+
+/* Cover / Hero Section */
+.nk-cover {
+  position: relative;
+}
+
+/* Cover title with handwriting font */
+.nk-cover__title {
+  font-weight: 900;
+  font-size: clamp(3rem, 8vw + 1rem, 12em);
+}
+
+/* Cover subtitle with handwriting font */
+.nk-cover__subtitle {
+  font-size: clamp(1.25rem, 3vw + 0.5rem, 3em);
+}
+
+/* Cover with background image */
+.nk-cover--with-image {
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url(https://raw.githubusercontent.com/nakDS/nakds/refs/heads/main/assets/img/randomMatches.jpg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Bounce animation for scroll indicator */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Language Switcher - Minimal overrides for header context */
+.lang-btn {
+  min-width: var(--x-large);
+  margin-left: var(--small);
+  background: transparent;
+  border-color: var(--color--k-10);
+  color: var(--color--k-10);
+  font-size: var(--font-size--large);
+}
+
+.lang-btn:hover {
+  background: var(--color--k-10);
+  color: var(--color--m);
+}
+
+.lang-btn.active {
+  background: var(--color--k-10);
+  color: var(--color--m);
+}
+
+/* Footer */
+.nk-footer {
+  font-size: var(--font-size--medium);
+  font-family: var(--font-machine);
+}
+
+/* Drawer custom styles */
+.nk-drawer {
+  padding: var(--large);
+}
+
+.nk-drawer__title {
+  font-size: var(--font-size--xxx-large);
+}
+
+#main-image-container {
+  margin-left: calc(var(--large) * -1);
+  margin-right: calc(var(--large) * -1);
+}
+
+#main-image-container img,
+#main-image-container video {
+  width: 100%;
+  border-radius: 0;
+  background: var(--color--k-9);
+}
+
+/* Content Items */
+.item .nk-card__image {
+  object-fit: contain;
+  background: var(--color--k-9);
+  width: 100%;
+}
+.item {
+  background: var(--color--k-10);
+  padding: var(--medium);
+  border-radius: var(--x-small);
+  box-shadow: 0 var(--x-small) var(--small) rgba(0,0,0,0.1);
+  transition: transform var(--animation-time) ease;
+  line-height: 1.3;
+}
+
+.item:hover {
+  transform: translateY(calc(var(--x-small) * -1));
+  box-shadow: 0 var(--small) var(--medium) rgba(0,0,0,0.15);
+}
+
+.item h3 {
+  margin-bottom: var(--medium);
+  color: var(--color);
+  font-size: var(--font-size--x-large);
+}
+
+.item img {
+  width: 100%;
+  border-radius: var(--x-small);
+  margin-top: var(--medium);
+}
+
+/* Headings with handwriting */
+h2.nk-heading--2 {
+  font-size: var(--font-size--xxxx-large);
+  font-weight: 600;
+}
+
+/* Text Preview */
+.text-preview {
+  max-height: calc(var(--large) * 3);
+  overflow: hidden;
+  position: relative;
+}
+
+.text-preview::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--large);
+  background: linear-gradient(transparent, var(--color--k-10));
+}
+
+.read-more {
+  color: var(--color);
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: var(--small);
+  font-size: var(--font-size--large);
+}
+
+.read-more:hover {
+  color: var(--color--darker);
+}
+
+/* Filter display */
+#filter-display {
+  font-size: var(--font-size--x-large);
+}
+
+/* Badges use Lato font */
+.nk-badge {
+  font-family: var(--font-machine);
+}

@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["artworks"],
+  "properties": {
+    "artworks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "collection", "images", "status", "price", "visibility", "slug"],
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "collection": { "type": "string", "enum": ["bila-collection", "shadow-portraits"] },
+          "medium": { "type": "array", "items": { "type": "string" } },
+          "topics": { "type": "array", "items": { "type": "string" } },
+          "dimensions": {
+            "type": "object",
+            "properties": {
+              "width": { "type": "number" },
+              "height": { "type": "number" },
+              "unit": { "type": "string" }
+            }
+          },
+          "edition": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string", "enum": ["original", "series", "print"] },
+              "number": { "type": ["integer", "null"] }
+            }
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "url", "alt"],
+              "properties": {
+                "id": { "type": "string" },
+                "url": { "type": "string" },
+                "alt": { "type": "string" },
+                "type": { "type": "string", "enum": ["main", "detail", "context"] },
+                "order": { "type": "integer" }
+              }
+            }
+          },
+          "status": { "type": "string", "enum": ["available", "sold", "reserved", "private"] },
+          "price": {
+            "type": "object",
+            "required": ["amount", "currency"],
+            "properties": {
+              "amount": { "type": "number" },
+              "currency": { "type": "string" }
+            }
+          },
+          "visibility": { "type": "string", "enum": ["public", "private"] },
+          "language": { "type": "string" },
+          "translations": {
+            "type": "object",
+            "properties": {
+              "eu": {
+                "type": "object",
+                "required": ["title", "description"],
+                "properties": {
+                  "title": { "type": "string" },
+                  "description": { "type": "string" }
+                }
+              },
+              "en": {
+                "type": "object",
+                "required": ["title", "description"],
+                "properties": {
+                  "title": { "type": "string" },
+                  "description": { "type": "string" }
+                }
+              }
+            }
+          },
+          "slug": { "type": "string" },
+          "createdAt": { "type": "string" },
+          "updatedAt": { "type": "string" }
+        }
+      }
+    }
+  }
+}

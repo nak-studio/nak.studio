@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="eu">
 
 <head>
     <meta charset="UTF-8">
@@ -7,37 +7,71 @@
     <title>nak.studio</title>
     <meta name="description" content="Paint to seek. Create to feel. Design for beauty">
     <link rel="shortcut icon" href="assets/favicon.ico">
+    <link rel="stylesheet" href="vendor/nakds.css">
+    <link rel="stylesheet" href="css/site.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <video class="video-background" autoplay muted loop playsinline>
-        <source src="assets/cover.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-
-    <div class="overlay"></div>
-
-    <div class="content">
-        <img class="logo" src="assets/nak-studio-logo.svg" alt="NAK Studio Logo">
+    <div class="home-split">
+        <div class="home-video">
+            <video autoplay muted loop playsinline>
+                <source src="assets/home-video.webm" type="video/webm">
+                <source src="assets/cover.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="home-brand">
+            <img class="logo" src="assets/nak-studio-logo.svg" alt="NAK Studio Logo">
+        </div>
     </div>
 
-    <!-- Google Analytics -->
-    <script>
-        (function(i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function() {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        <div id="site-nav"></div>
+        <script>
+            // Load shared navigation and set dynamic links
+            fetch('partials/nav.html')
+                .then(res => res.text())
+                .then(html => {
+                    document.getElementById('site-nav').innerHTML = html;
+                    // Dynamically set navigation links based on page depth
+                    var path = window.location.pathname;
+                    var docsIdx = path.indexOf('/docs/');
+                    var afterDocs = path.slice(docsIdx + 6); // skip '/docs/'
+                    var depth = afterDocs.split('/').length - 1;
+                    var prefix = '';
+                    if (depth === 0) prefix = '';
+                    else prefix = '../'.repeat(depth);
 
-        ga('create', 'UA-57662409-1', 'auto');
-        ga('send', 'pageview');
+                    var nav = document.getElementById('site-nav');
+                    if (nav) {
+                        var links = [
+                            { sel: '.nav-home', file: 'index.html' },
+                            { sel: '.nav-work', file: 'work/index.html' },
+                            { sel: '.nav-collectors', file: 'collectors/index.html' },
+                            { sel: '.nav-about', file: 'about/index.html' }
+                        ];
+                        links.forEach(link => {
+                            var el = nav.querySelector(link.sel);
+                            if (el) {
+                                el.setAttribute('href', prefix + link.file);
+                                el.classList.remove('active');
+                            }
+                        });
+                        // Highlight the active link
+                        var current = window.location.pathname.split('/').pop();
+                        if (!current || current === '') current = 'index.html';
+                        links.forEach(link => {
+                            if (current === link.file.split('/').pop()) {
+                                var el = nav.querySelector(link.sel);
+                                if (el) el.classList.add('active');
+                            }
+                        });
+                    }
+                });
+        </script>
+
+    <script type="module">
+      import { initI18n } from './modules/i18n.js';
+      initI18n();
     </script>
 </body>
 
