@@ -28,6 +28,14 @@
           "alt": "Bila 01 context",
           "type": "context",
           "order": 2
+        },
+        {
+          "id": "bila-01-video",
+          "url": "assets/cover.mp4",
+          "alt": "Bila 01 video",
+          "type": "video",
+          "mediaType": "video",
+          "order": 3
         }
       ],
       "status": "sold",

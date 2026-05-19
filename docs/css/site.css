@@ -373,7 +373,8 @@ body {
   position: relative;
 }
 
-.carousel-img {
+.carousel-img,
+.carousel-img video {
   display: block;
   filter: var(--artwork-image-filter);
   height: auto;
