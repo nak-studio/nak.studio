@@ -88,9 +88,6 @@ body {
   box-sizing: border-box;
 }
 
-.site-nav .lang-btn:first-of-type {
-  /* margin-left: 0.5rem; */
-}
 
 .site-nav .lang-btn.active {
   background: var(--color);
@@ -202,6 +199,7 @@ body {
 
 .item-figure {
   margin: 0;
+  position: relative;
 }
 
 .item-caption {
@@ -238,6 +236,28 @@ body {
 .item .nk-card__image {
   object-fit: contain;
   width: 100%;
+}
+
+/* New badge */
+.badge-new {
+  background: var(--color--k-2);
+  color: var(--color--k-10);
+  font-size: 0.6rem;
+  font-family: var(--font-machine);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  pointer-events: none;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}
+
+.item-figure div .badge-new {
+  position: absolute;
+  top: var(--small);
+  left: var(--small);
+  z-index: 1;
 }
 
 /* Status dot */
@@ -574,6 +594,12 @@ body {
 .price-table th {
   font-weight: bold;
   color: var(--color);
+}
+
+.price-table__title {
+  display: flex;
+  align-items: center;
+  gap: var(--small);
 }
 
 .price-table__thumb {

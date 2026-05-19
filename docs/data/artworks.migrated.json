@@ -630,6 +630,121 @@
       }
     },
     {
+      "id": "bila-13",
+      "collection": "bila-collection",
+      "medium": ["watercolor"],
+      "topics": [],
+      "dimensions": {
+        "width": 9,
+        "height": 25.3,
+        "unit": "cm"
+      },
+      "edition": {
+        "type": "original",
+        "number": null
+      },
+      "images": [
+        {
+          "id": "bila-13-crop",
+          "url": "assets/artworks/bila.13.crop.jpeg",
+          "alt": "Bila 13 crop",
+          "type": "main",
+          "order": 1
+        },
+        {
+          "id": "bila-13-context",
+          "url": "assets/artworks/bila.13.context.jpeg",
+          "alt": "Bila 13 context",
+          "type": "context",
+          "order": 2
+        },
+        {
+          "id": "bila-13-3",
+          "url": "assets/artworks/bila.13.3.jpeg",
+          "alt": "Bila 13 detail",
+          "type": "detail",
+          "order": 3
+        }
+      ],
+      "isNew": true,
+      "status": "available",
+      "price": {
+        "amount": 120,
+        "currency": "EUR"
+      },
+      "visibility": "public",
+      "slug": "bila-13",
+      "paintedAt": "2026 May",
+      "createdAt": "2026-05-19",
+      "updatedAt": "2026-05-19",
+      "translations": {
+        "eu": {
+          "title": "Bila.13",
+          "description": "Bila Bilduma pieza 13",
+          "medium": "Akuarela paperean"
+        },
+        "en": {
+          "title": "Bila.13",
+          "description": "Bila Collection piece 13",
+          "medium": "Watercolor on paper"
+        }
+      }
+    },
+    {
+      "id": "bila-14",
+      "collection": "bila-collection",
+      "medium": ["watercolor"],
+      "topics": [],
+      "dimensions": {
+        "width": 9,
+        "height": 25.3,
+        "unit": "cm"
+      },
+      "edition": {
+        "type": "original",
+        "number": null
+      },
+      "images": [
+        {
+          "id": "bila-14-crop",
+          "url": "assets/artworks/bila.14.crop.jpeg",
+          "alt": "Bila 14 crop",
+          "type": "main",
+          "order": 1
+        },
+        {
+          "id": "bila-14-context",
+          "url": "assets/artworks/bila.14.context.jpeg",
+          "alt": "Bila 14 context",
+          "type": "context",
+          "order": 2
+        }
+      ],
+      "isNew": true,
+      "status": "available",
+      "price": {
+        "amount": 120,
+        "currency": "EUR"
+      },
+      "visibility": "public",
+      "slug": "bila-14",
+      "paintedAt": "2026 May",
+      "createdAt": "2026-05-19",
+      "updatedAt": "2026-05-19",
+      "translations": {
+        "eu": {
+          "title": "Bila.14",
+          "description": "Bila Bilduma pieza 14",
+          "medium": "Akuarela paperean"
+        },
+        "en": {
+          "title": "Bila.14",
+          "description": "Bila Collection piece 14",
+          "medium": "Watercolor on paper"
+        }
+      }
+    },
+    {
       "id": "shadow-01",
       "collection": "shadow-portraits",
       "medium": ["Akrilikoa mihizean"],

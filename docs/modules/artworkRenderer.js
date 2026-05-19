@@ -40,12 +40,26 @@ function createArtworkItem(artwork) {
     const figure = document.createElement('figure');
     figure.className = 'item-figure';
 
+    const imgWrapper = document.createElement('div');
+    imgWrapper.style.position = 'relative';
+    imgWrapper.style.display = 'inline-block';
+    imgWrapper.style.width = '100%';
+
     const mainImage = createMediaElement(artwork.images[0]);
     mainImage.className = 'nk-card__image';
     mainImage.style.objectFit = 'contain';
     mainImage.style.height = 'auto';
     mainImage.style.maxHeight = '700px';
-    figure.appendChild(mainImage);
+    imgWrapper.appendChild(mainImage);
+
+    if (artwork.isNew) {
+      const badge = document.createElement('span');
+      badge.className = 'badge-new';
+      badge.textContent = t('new');
+      imgWrapper.appendChild(badge);
+    }
+
+    figure.appendChild(imgWrapper);
 
     const caption = document.createElement('figcaption');
     caption.className = 'item-caption';

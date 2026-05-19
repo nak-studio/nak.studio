@@ -225,7 +225,7 @@
       }
 
       function renderPriceList() {
-        const artworks = state.getArtworks();
+        const artworks = state.getArtworks().slice().sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0));
         const container = document.getElementById("price-list");
         if (!container || artworks.length === 0) return;
 
@@ -254,7 +254,7 @@
 
           html += `<tr>
             <td class="price-table__thumb"><img src="${escapeHtml(thumb)}" alt="${escapeHtml(a.title)}" data-artwork-idx="${idx}" style="cursor:pointer;"></td>
-            <td class="price-table__title" data-artwork-idx="${idx}" style="cursor:pointer;">${escapeHtml(a.title)}</td>
+            <td data-artwork-idx="${idx}" style="cursor:pointer;"><div class="price-table__title">${escapeHtml(a.title)}${a.isNew ? `<span class="badge-new">${escapeHtml(t('new'))}</span>` : ''}</div></td>
             <td data-label="${escapeHtml(t("medium"))}">${escapeHtml((a.medium || []).join(", "))}</td>
             <td data-label="${escapeHtml(t("dimensions"))}">${dims}</td>
             <td data-label="${escapeHtml(t("price"))}">${price}</td>
@@ -267,7 +267,7 @@
 
         // Add click handlers to images and titles
         container
-          .querySelectorAll("img[data-artwork-idx], .price-table__title")
+          .querySelectorAll("img[data-artwork-idx], td[data-artwork-idx]")
           .forEach((el) => {
             el.addEventListener("click", (e) => {
               const idx = el.getAttribute("data-artwork-idx");
