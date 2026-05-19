@@ -718,6 +718,100 @@ body {
   }
 }
 
+/* Cookie consent banner */
+.consent-banner {
+  position: fixed;
+  bottom: var(--large);
+  left: 50%;
+  transform: translateX(-50%) translateY(calc(100% + var(--large)));
+  z-index: 100;
+  background: var(--color--k-10);
+  border: 1px solid var(--color--k-7);
+  padding: var(--medium) var(--large);
+  display: flex;
+  align-items: center;
+  gap: var(--large);
+  max-width: 680px;
+  width: calc(100% - var(--x-large));
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+}
+
+.consent-banner--visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.consent-banner--hidden {
+  transform: translateX(-50%) translateY(calc(100% + var(--large)));
+  opacity: 0;
+}
+
+.consent-banner__text {
+  font-size: 0.78rem;
+  color: var(--color--k-4);
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+
+.consent-banner__text a {
+  color: var(--color--k-3);
+  text-decoration: underline;
+}
+
+.consent-banner__actions {
+  display: flex;
+  gap: var(--small);
+  flex-shrink: 0;
+}
+
+.consent-banner__btn {
+  font-family: var(--font-machine);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--color--k-6);
+  background: transparent;
+  color: var(--color--k-3);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.consent-banner__btn--accept {
+  background: var(--color--k-2);
+  border-color: var(--color--k-2);
+  color: var(--color--k-10);
+}
+
+.consent-banner__btn:hover {
+  opacity: 0.75;
+}
+
+@media (max-width: 600px) {
+  .consent-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--medium);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: translateY(100%);
+    width: 100%;
+    max-width: 100%;
+    border-radius: var(--medium) var(--medium) 0 0;
+    border-bottom: none;
+  }
+  .consent-banner--visible {
+    transform: translateY(0);
+  }
+  .consent-banner--hidden {
+    transform: translateY(100%);
+  }
+}
+
 /* Footer */
 .site-footer {
   border-top: 1px solid var(--color--k-7);
