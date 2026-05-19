@@ -675,6 +675,49 @@ body {
   }
 }
 
+/* ACEO section */
+.aceo-section {
+  border-top: 1px solid var(--color--k-7);
+  padding-top: var(--x-large);
+  margin-top: var(--x-large);
+  display: flex;
+  gap: var(--x-large);
+  align-items: flex-start;
+}
+
+.aceo-image {
+  width: 200px;
+  flex-shrink: 0;
+  object-fit: cover;
+  filter: var(--artwork-image-filter);
+  transform: rotate(-3deg);
+  box-shadow: 2px 4px 12px rgba(0,0,0,0.15);
+}
+
+.aceo-text h3 {
+  font-size: 1rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color--k-3);
+  margin-bottom: var(--medium);
+}
+
+.aceo-text p {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--color--k-4);
+}
+
+@media (max-width: 600px) {
+  .aceo-section {
+    flex-direction: column;
+  }
+  .aceo-image {
+    width: 100%;
+  }
+}
+
 /* Footer */
 .site-footer {
   border-top: 1px solid var(--color--k-7);
