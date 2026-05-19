@@ -25,16 +25,29 @@ export function initConsent() {
   if (stored === 'accepted') { loadGA(); return; }
   if (stored === 'declined') return;
 
+  const lang = localStorage.getItem('lang') || 'eu';
+  const copy = lang === 'eu' ? {
+    text: 'Webgune honek cookieak erabiltzen ditu bisitariek nola aritzen diren ulertzeko.',
+    learn: 'Gehiago jakin',
+    decline: 'Ukatu',
+    accept: 'Onartu'
+  } : {
+    text: 'This site uses cookies to understand how visitors interact with the work.',
+    learn: 'Learn more',
+    decline: 'Decline',
+    accept: 'Accept'
+  };
+
   const banner = document.createElement('div');
   banner.className = 'consent-banner';
   banner.innerHTML = `
     <p class="consent-banner__text">
-      This site uses cookies to understand how visitors interact with the work.
-      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Learn more</a>
+      ${copy.text}
+      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">${copy.learn}</a>
     </p>
     <div class="consent-banner__actions">
-      <button class="consent-banner__btn consent-banner__btn--decline">Decline</button>
-      <button class="consent-banner__btn consent-banner__btn--accept">Accept</button>
+      <button class="consent-banner__btn consent-banner__btn--decline">${copy.decline}</button>
+      <button class="consent-banner__btn consent-banner__btn--accept">${copy.accept}</button>
     </div>
   `;
 
