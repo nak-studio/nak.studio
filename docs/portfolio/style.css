@@ -52,6 +52,23 @@ html {
 /* Cover / Hero Section */
 .nk-cover {
   position: relative;
+  align-items: center;
+  text-align: center;
+}
+
+@media (max-width: 799px) {
+  .nk-cover {
+    align-items: center !important;
+    text-align: center !important;
+  }
+}
+
+@media (min-width: 800px) {
+  .nk-cover {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
 }
 
 /* Cover title with handwriting font */

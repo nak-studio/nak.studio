@@ -20,6 +20,24 @@ body, html {
     background: #fff;
 }
 
+.home-video img {
+        display: block;
+        margin-left: 0;
+        margin-right: 0;
+        object-position: left center;
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
+}
+
+@media (max-width: 600px) {
+    .home-video img {
+        margin-left: auto;
+        margin-right: auto;
+        object-position: center center;
+    }
+}
+
 .home-video video {
     width: 100%;
     height: 100%;
