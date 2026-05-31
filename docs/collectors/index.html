@@ -134,6 +134,9 @@
             >
               Prezioen Zerrenda
             </h2>
+            <div id="special-active" class="special-unlock" style="display:none">
+              <span class="special-unlock__active">🔓 <span data-i18n="specialAccessUnlock">%20 deskontua aktibo</span></span>
+            </div>
             <div id="price-list"></div>
             <div class="aceo-section">
               <a href="https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MTAzOTczMDIwOTgyMTU2?story_media_id=3887752959459107815_5555621685&igsh=MWs1bHEycTd6a3VrNA==" target="_blank" rel="noopener"><img src="../assets/available-mini.jpeg" alt="ACEO mini pieces" class="aceo-image" /></a>
@@ -224,6 +227,7 @@
       window.bilaApp.filterByTopic = filterByTopic;
 
       const PASS_HASH = "6e616b73747564696f"; // hex of "nakstudio"
+      const SPECIAL_PASS_HASH = "636f6c6c6563746f72636c7562"; // hex of "collectorclub"
 
       function checkPassword(input) {
         const hex = Array.from(new TextEncoder().encode(input))
@@ -231,6 +235,15 @@
           .join("");
         return hex === PASS_HASH;
       }
+
+      function checkSpecialPassword(input) {
+        const hex = Array.from(new TextEncoder().encode(input))
+          .map((b) => b.toString(16).padStart(2, "0"))
+          .join("");
+        return hex === SPECIAL_PASS_HASH;
+      }
+
+      let specialAccess = sessionStorage.getItem("collector-special") === "1";
 
       function renderPriceList() {
         const artworks = state.getArtworks().slice().sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0));
@@ -244,6 +257,7 @@
           <th>${escapeHtml(t("medium"))}</th>
           <th>${escapeHtml(t("dimensions"))}</th>
           <th>${escapeHtml(t("price"))}</th>
+          ${specialAccess ? `<th class="price-table__special-col">${escapeHtml(t("specialPrice"))}</th>` : ""}
           <th>${escapeHtml(t("status"))}</th>
         </tr></thead><tbody>`;
 
@@ -257,7 +271,12 @@
           const dims = a.dimensions
             ? `${a.dimensions.width} × ${a.dimensions.height} ${a.dimensions.unit}`
             : "—";
-          const price = a.price ? `${a.price.amount} ${a.price.currency}` : "—";
+          const priceDisplay = a.price
+            ? (specialAccess ? `<span class="price--striked">${a.price.amount} ${a.price.currency}</span>` : `${a.price.amount} ${a.price.currency}`)
+            : "—";
+          const specialCell = specialAccess
+            ? `<td data-label="${escapeHtml(t("specialPrice"))}" class="price-table__special">${a.price && a.status === "available" ? `${Math.round(a.price.amount * 0.8)} ${a.price.currency}` : "—"}</td>`
+            : "";
           const thumb = a.images && a.images.length > 0 ? a.images[0].url : "";
 
           html += `<tr>
@@ -265,7 +284,8 @@
             <td data-artwork-idx="${idx}" style="cursor:pointer;"><div class="price-table__title">${escapeHtml(a.title)}${a.isNew ? `<span class="badge-new">${escapeHtml(t('new'))}</span>` : ''}</div></td>
             <td data-label="${escapeHtml(t("medium"))}">${escapeHtml((a.medium || []).join(", "))}</td>
             <td data-label="${escapeHtml(t("dimensions"))}">${dims}</td>
-            <td data-label="${escapeHtml(t("price"))}">${price}</td>
+            <td data-label="${escapeHtml(t("price"))}">${priceDisplay}</td>
+            ${specialCell}
             <td data-label="${escapeHtml(t("status"))}"><span class="status-dot ${dotClass}" style="display:inline-block; position:static; margin-right:var(--x-small);"></span>${escapeHtml(t(statusKey))}</td>
           </tr>`;
         });
@@ -304,18 +324,29 @@
       document.getElementById("logout-link").addEventListener("click", (e) => {
         e.preventDefault();
         sessionStorage.removeItem("collector-auth");
+        sessionStorage.removeItem("collector-special");
+        specialAccess = false;
         document.getElementById("collector-content").style.display = "none";
         document.getElementById("login-section").style.display = "";
         document.getElementById("password-input").value = "";
+        document.getElementById("special-active").style.display = "none";
       });
 
       document.getElementById("login-form").addEventListener("submit", (e) => {
         e.preventDefault();
         const input = document.getElementById("password-input").value;
-        if (checkPassword(input)) {
+        const isSpecial = checkSpecialPassword(input);
+        if (isSpecial || checkPassword(input)) {
+          if (isSpecial) {
+            specialAccess = true;
+            sessionStorage.setItem("collector-special", "1");
+          }
           document.getElementById("login-section").style.display = "none";
           document.getElementById("collector-content").style.display = "";
           sessionStorage.setItem("collector-auth", "1");
+          if (specialAccess) {
+            document.getElementById("special-active").style.display = "";
+          }
           renderPriceList();
         } else {
           document.getElementById("login-error").style.display = "block";
@@ -330,6 +361,9 @@
         if (sessionStorage.getItem("collector-auth") === "1") {
           document.getElementById("login-section").style.display = "none";
           document.getElementById("collector-content").style.display = "";
+          if (specialAccess) {
+            document.getElementById("special-active").style.display = "";
+          }
           renderPriceList();
         }
 

@@ -55,22 +55,29 @@ export function changeMainImage(url, alt) {
   // Legacy — kept for compatibility
 }
 
+function buildMediaEl(image) {
+  if (image.mediaType === 'video') {
+    return `<video class="carousel-img" src="${escapeHtml(image.url)}" autoplay muted loop playsinline></video>`;
+  }
+  return `<img class="carousel-img" src="${escapeHtml(image.url)}" alt="${escapeHtml(image.alt || '')}">`;
+}
+
 function setupCarousel(artwork, startIndex) {
   const container = document.getElementById('drawer-carousel');
   if (!container || artwork.images.length <= 1) return;
 
   let current = startIndex;
-  const img = container.querySelector('.carousel-img');
+  const wrapper = container.querySelector('.carousel-media-wrapper');
   const counter = container.querySelector('.carousel-counter');
   const prevBtn = container.querySelector('.carousel-prev');
   const nextBtn = container.querySelector('.carousel-next');
 
   function update() {
-    img.style.opacity = '0';
+    const mediaEl = wrapper.firstElementChild;
+    if (mediaEl) mediaEl.style.opacity = '0';
     setTimeout(() => {
-      img.src = artwork.images[current].url;
-      img.alt = artwork.images[current].alt || '';
-      img.style.opacity = '1';
+      wrapper.innerHTML = buildMediaEl(artwork.images[current]);
+      wrapper.firstElementChild.style.opacity = '1';
     }, 150);
     counter.textContent = `${current + 1} / ${artwork.images.length}`;
   }
@@ -92,7 +99,7 @@ function buildDrawerContent(artwork, startIndex) {
   // Carousel
   const hasMultiple = artwork.images.length > 1;
   html += `<div id="drawer-carousel" class="drawer-carousel">`;
-  html += `<img class="carousel-img" src="${escapeHtml(mainImg.url)}" alt="${escapeHtml(mainImg.alt || '')}">`;
+  html += `<div class="carousel-media-wrapper">${buildMediaEl(mainImg)}</div>`;
   if (hasMultiple) {
     html += `<button class="carousel-prev" aria-label="Previous">&#8249;</button>`;
     html += `<button class="carousel-next" aria-label="Next">&#8250;</button>`;

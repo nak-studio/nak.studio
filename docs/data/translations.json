@@ -56,7 +56,10 @@
     "aceoTitle": "ACEO — Mini Piezak",
     "aceoText": "Prezio eskuragarrian pieza original eta bakarrak nahi badituzu, joan nire <a href='https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MTAzOTczMDIwOTgyMTU2?story_media_id=3887752959459107815_5555621685&igsh=MWs1bHEycTd6a3VrNA==' target='_blank' rel='noopener'>@nak.studio</a> Instagramera eta aurkitu eskuragarri dauden azken ACEOak. ACEO (Art Cards Editions and Originals) txartel-tamainako artelanak dira — 2.5 × 3.5 hazbete, hain zuzen. Kolekzionatzeko diseinatutako pieza originalak dira.",
     "aiDisclaimerLabel": "IA-ri buruz:",
-    "aiDisclaimer": "Copilot (GitHub-en IA tresna) erabili dut webgunea eraikitzen laguntzeko. Edukin guztia eta artelanak guztiz nireak dira."
+    "aiDisclaimer": "Copilot (GitHub-en IA tresna) erabili dut webgunea eraikitzen laguntzeko. Edukin guztia eta artelanak guztiz nireak dira.",
+    "specialPrice": "Prezio Berezia",
+    "specialAccessError": "Kode okerra",
+    "specialAccessUnlock": "%20 collector club tasa aktibo"
   },
   "en": {
     "siteTitle": "nak.studio",
@@ -115,6 +118,9 @@
     "aceoTitle": "ACEO — Mini Pieces",
     "aceoText": "If you're looking for affordable, one-of-a-kind mini pieces, head over to my <a href='https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MTAzOTczMDIwOTgyMTU2?story_media_id=3887752959459107815_5555621685&igsh=MWs1bHEycTd6a3VrNA==' target='_blank' rel='noopener'>@nak.studio</a> Instagram to find the latest available ACEOs. ACEO stands for Art Cards Editions and Originals — small original artworks sized 2.5 × 3.5 inches, designed to be collected and traded.",
     "aiDisclaimerLabel": "AI Disclaimer:",
-    "aiDisclaimer": "I used Copilot (GitHub's AI tool) to help build this website. All content and artworks are entirely my own."
+    "aiDisclaimer": "I used Copilot (GitHub's AI tool) to help build this website. All content and artworks are entirely my own.",
+    "specialPrice": "Special Price",
+    "specialAccessError": "Wrong code",
+    "specialAccessUnlock": "20% collector club rate active"
   }
 }
