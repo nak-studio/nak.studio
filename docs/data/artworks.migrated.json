@@ -197,7 +197,7 @@
           "order": 2
         }
       ],
-      "status": "available",
+      "status": "sold",
       "price": {
         "amount": 100,
         "currency": "EUR"
@@ -206,7 +206,7 @@
       "slug": "bila-04",
       "paintedAt": "2025 July",
       "createdAt": "2026-05-16",
-      "updatedAt": "2026-05-16",
+      "updatedAt": "2026-06-01",
       "translations": {
         "eu": {
           "title": "Bila.04",
