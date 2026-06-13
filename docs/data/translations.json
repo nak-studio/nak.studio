@@ -66,7 +66,9 @@
     "agendaEventWith": "Artista:",
     "agendaEventDate": "Data:",
     "agendaEventMore": "Informazio gehiago",
-    "eventDateTallerPinturaGrande": "22 – 23 urtarrila 2027"
+    "eventDateTallerPinturaGrande": "22 – 23 urtarrila 2027",
+    "eventTitleRomaExpo": "Bila Bildumaren erakusketa — Erroma",
+    "eventDateRomaExpo": "4 – 10 Abendua 2026"
   },
   "en": {
     "siteTitle": "nak.studio",
@@ -135,6 +137,8 @@
     "agendaEventWith": "With:",
     "agendaEventDate": "Date:",
     "agendaEventMore": "More info",
-    "eventDateTallerPinturaGrande": "22 – 23 January 2027"
+    "eventDateTallerPinturaGrande": "22 – 23 January 2027",
+    "eventTitleRomaExpo": "Exhibition of Bila Collection — Rome",
+    "eventDateRomaExpo": "4 – 10 December 2026"
   }
 }
