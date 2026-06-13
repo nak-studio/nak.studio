@@ -59,7 +59,14 @@
     "aiDisclaimer": "Copilot (GitHub-en IA tresna) erabili dut webgunea eraikitzen laguntzeko. Edukin guztia eta artelanak guztiz nireak dira.",
     "specialPrice": "Prezio Berezia",
     "specialAccessError": "Kode okerra",
-    "specialAccessUnlock": "%20 collector club tasa aktibo"
+    "specialAccessUnlock": "%20 collector club tasa aktibo",
+    "agenda": "Agenda",
+    "agendaTitle": "Agenda",
+    "agendaSubtitle": "Datozen ekitaldiak",
+    "agendaEventWith": "Artista:",
+    "agendaEventDate": "Data:",
+    "agendaEventMore": "Informazio gehiago",
+    "eventDateTallerPinturaGrande": "22 – 23 urtarril 2027"
   },
   "en": {
     "siteTitle": "nak.studio",
@@ -121,6 +128,13 @@
     "aiDisclaimer": "I used Copilot (GitHub's AI tool) to help build this website. All content and artworks are entirely my own.",
     "specialPrice": "Special Price",
     "specialAccessError": "Wrong code",
-    "specialAccessUnlock": "20% collector club rate active"
+    "specialAccessUnlock": "20% collector club rate active",
+    "agenda": "Agenda",
+    "agendaTitle": "Agenda",
+    "agendaSubtitle": "Upcoming events",
+    "agendaEventWith": "With:",
+    "agendaEventDate": "Date:",
+    "agendaEventMore": "More info",
+    "eventDateTallerPinturaGrande": "22 – 23 January 2027"
   }
 }

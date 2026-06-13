@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda — nak.studio</title>
+  <meta name="description" content="Datozen ekitaldiak. Upcoming events by Naiara Abaroa.">
+  <link rel="shortcut icon" href="../assets/favicon.ico">
+  <link rel="stylesheet" href="../vendor/nakds.css">
+  <link rel="stylesheet" href="../css/site.css">
+</head>
+<body>
+  <div class="page-wrapper">
+
+    <div id="site-nav"></div>
+    <script>
+      fetch('../partials/nav.html')
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById('site-nav').innerHTML = html;
+          var path = window.location.pathname;
+          var docsIdx = path.indexOf('/docs/');
+          var afterDocs = path.slice(docsIdx + 6);
+          var depth = afterDocs.split('/').length - 1;
+          var prefix = depth === 0 ? '' : '../'.repeat(depth);
+
+          var nav = document.getElementById('site-nav');
+          if (nav) {
+            var links = [
+              { sel: '.nav-home',       file: 'index.html' },
+              { sel: '.nav-work',       file: 'work/index.html' },
+              { sel: '.nav-collectors', file: 'collectors/index.html' },
+              { sel: '.nav-agenda',     file: 'agenda/index.html' },
+              { sel: '.nav-about',      file: 'about/index.html' }
+            ];
+            links.forEach(link => {
+              var el = nav.querySelector(link.sel);
+              if (el) {
+                el.setAttribute('href', prefix + link.file);
+                el.classList.remove('active');
+              }
+            });
+            var current = window.location.pathname.split('/').pop();
+            if (!current || current === '') current = 'index.html';
+            links.forEach(link => {
+              if (current === link.file.split('/').pop()) {
+                var el = nav.querySelector(link.sel);
+                if (el) el.classList.add('active');
+              }
+            });
+          }
+        });
+    </script>
+
+    <header class="page-header">
+      <h1 data-i18n="agendaTitle">Agenda</h1>
+      <p class="agenda-section-title" data-i18n="agendaSubtitle">Datozen ekitaldiak</p>
+    </header>
+
+    <main>
+      <section class="nk-section">
+        <div class="nk-container--content nk-container--narrow">
+
+          <div class="agenda-timeline">
+
+            <!-- Event: Taller La Madriguera -->
+            <article class="agenda-event">
+              <div class="agenda-event__dot"></div>
+              <div class="agenda-event__body">
+                <h2 class="agenda-event__title">
+                  Pinta a lo grande y expón en una galería de arte.
+                  Taller de pintura de gran formato + comisariado.
+                </h2>
+                <p class="agenda-event__curator">
+                  <span data-i18n="agendaEventWith">Harekin:</span>
+                  <strong>Paula Bonet</strong>
+                </p>
+                <p class="agenda-event__date">
+                  <span data-i18n="agendaEventDate">Data:</span>
+                  <span data-i18n="eventDateTallerPinturaGrande">22 – 23 January 2027</span>
+                </p>
+                <a
+                  href="https://www.tallerlamadriguera.com/talleres/pintura"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="agenda-event__link"
+                  data-i18n="agendaEventMore"
+                >Informazio gehiago</a>
+              </div>
+            </article>
+
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer nk-footer nk-bg--k-10 nk-text-align--center">
+      <div class="nk-container--content">
+        <div class="footer-contact">
+          <a href="mailto:naiara@nak.studio">naiara@nak.studio</a>
+          <span class="footer-dot"></span>
+          <a href="https://instagram.com/nak.studio" target="_blank" rel="noopener">@nak.studio</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 nak.studio &mdash; Basque Country</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script type="module">
+    import { initI18n } from '../modules/i18n.js';
+    initI18n();
+  </script>
+</body>
+</html>
