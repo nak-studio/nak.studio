@@ -456,6 +456,10 @@ body {
   width: 100%;
 }
 
+video.carousel-img {
+  filter: none;
+}
+
 .carousel-prev,
 .carousel-next {
   align-items: center;
