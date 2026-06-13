@@ -6,7 +6,7 @@
     <title>Collectors — nak.studio</title>
     <link rel="shortcut icon" href="../assets/favicon.ico" />
     <link rel="stylesheet" href="../vendor/nakds.css" />
-    <link rel="stylesheet" href="../css/site.css" />
+    <link rel="stylesheet" href="../css/site.css?v=2" />
   </head>
   <body>
     <div class="page-wrapper">
@@ -251,7 +251,12 @@
         const container = document.getElementById("price-list");
         if (!container || artworks.length === 0) return;
 
-        let html = '<table class="price-table">';
+        let html = '<div class="status-legend" style="margin-bottom: var(--large);">'
+          + `<span class="status-legend__item"><span class="status-dot status-dot--available"></span><span>${escapeHtml(t("available"))}</span></span>`
+          + `<span class="status-legend__item"><span class="status-dot status-dot--reserved"></span><span>${escapeHtml(t("reserved"))}</span></span>`
+          + `<span class="status-legend__item"><span class="status-dot status-dot--sold"></span><span>${escapeHtml(t("sold"))}</span></span>`
+          + '</div>';
+        html += '<table class="price-table">';
         html += `<thead><tr>
           <th></th>
           <th>${escapeHtml(t("artworks"))}</th>
@@ -268,6 +273,8 @@
           const dotClass =
             a.status === "sold" || a.status === "private"
               ? "status-dot--sold"
+              : a.status === "reserved"
+              ? "status-dot--reserved"
               : "status-dot--available";
           const dims = a.dimensions
             ? `${a.dimensions.width} × ${a.dimensions.height} ${a.dimensions.unit}`

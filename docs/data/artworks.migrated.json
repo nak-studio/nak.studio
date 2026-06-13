@@ -105,7 +105,7 @@
         }
       ],
       "isNew": false,
-      "status": "available",
+      "status": "reserved",
       "price": {
         "amount": 120,
         "currency": "EUR"
@@ -169,7 +169,7 @@
         }
       ],
       "isNew": false,
-      "status": "available",
+      "status": "reserved",
       "price": {
         "amount": 120,
         "currency": "EUR"
@@ -233,7 +233,7 @@
         }
       ],
       "isNew": false,
-      "status": "available",
+      "status": "reserved",
       "price": {
         "amount": 120,
         "currency": "EUR"
@@ -297,7 +297,7 @@
         }
       ],
       "isNew": false,
-      "status": "available",
+      "status": "reserved",
       "price": {
         "amount": 120,
         "currency": "EUR"

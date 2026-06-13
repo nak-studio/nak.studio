@@ -120,7 +120,9 @@ function buildDrawerContent(artwork, startIndex) {
 
   // Status with dot
   const statusKey = artwork.status === 'private' ? 'privateCollection' : artwork.status;
-  const statusClass = (artwork.status === 'sold' || artwork.status === 'private') ? 'status-dot--sold' : 'status-dot--available';
+  const statusClass = artwork.status === 'sold' || artwork.status === 'private' ? 'status-dot--sold'
+    : artwork.status === 'reserved' ? 'status-dot--reserved'
+    : 'status-dot--available';
   html += `<div class="drawer-detail"><dt>${escapeHtml(t('status'))}</dt><dd><span class="status-dot ${statusClass}"></span>${escapeHtml(t(statusKey))}</dd></div>`;
 
 
