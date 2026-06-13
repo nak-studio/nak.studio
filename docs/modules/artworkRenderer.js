@@ -70,12 +70,12 @@ function createArtworkItem(artwork) {
     metaRow.style.alignItems = 'center';
     metaRow.style.gap = '0.75rem';
 
-    if (artwork.status === 'sold' || artwork.status === 'private' || artwork.status === 'reserved') {
+    if (artwork.status === 'sold' || artwork.status === 'private' || artwork.status === 'reserved' || artwork.status === 'available') {
       const dot = document.createElement('span');
-      dot.className = artwork.status === 'reserved'
-        ? 'status-dot status-dot--reserved'
-        : 'status-dot status-dot--sold';
-      dot.title = t(artwork.status === 'sold' ? 'sold' : artwork.status === 'reserved' ? 'reserved' : 'privateCollection');
+      if (artwork.status === 'reserved') dot.className = 'status-dot status-dot--reserved';
+      else if (artwork.status === 'available') dot.className = 'status-dot status-dot--available';
+      else dot.className = 'status-dot status-dot--sold';
+      dot.title = t(artwork.status === 'sold' ? 'sold' : artwork.status === 'reserved' ? 'reserved' : artwork.status === 'available' ? 'available' : 'privateCollection');
       metaRow.appendChild(dot);
     }
 

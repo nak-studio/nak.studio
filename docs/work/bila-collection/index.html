@@ -80,9 +80,11 @@
     <main>
       <section class="nk-section">
         <div class="nk-container--content">
-          <div class="status-legend">
-            <span class="status-legend__item"><span class="status-dot status-dot--reserved"></span><span data-i18n="reserved">Erakusketarako erreserbatua</span></span>
-            <span class="status-legend__item"><span class="status-dot status-dot--sold"></span><span data-i18n="sold">Saldua</span></span>
+          <div class="status-legend" id="status-legend">
+            <button class="status-legend__filter status-legend__filter--all active" data-status="all" data-i18n="all">Guztiak</button>
+            <button class="status-legend__filter" data-status="available"><span class="status-dot status-dot--available"></span><span data-i18n="available">Eskuragarri</span></button>
+            <button class="status-legend__filter" data-status="reserved"><span class="status-dot status-dot--reserved"></span><span data-i18n="reserved">Erakusketarako erreserbatua</span></button>
+            <button class="status-legend__filter" data-status="sold"><span class="status-dot status-dot--sold"></span><span data-i18n="sold">Saldua</span></button>
           </div>
           <div id="artworks" class="nk-grid-3@md nk-gap--large"></div>
         </div>
@@ -129,17 +131,36 @@
     import { loadData } from '../../modules/dataService.js';
     import { displayArtworks } from '../../modules/artworkRenderer.js';
 
+    let allArtworks = [];
+    let activeStatus = 'all';
+
     function renderArtworks() {
-      loadData().then(({ artworks }) => {
-        // Only show artworks from the 'bila-collection'
-        const filtered = artworks
-          .filter(a => a.collection === 'bila-collection')
-          .sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0));
-        displayArtworks(filtered, 'artworks');
+      const filtered = (activeStatus === 'all'
+        ? allArtworks
+        : allArtworks.filter(a => a.status === activeStatus)
+      );
+      displayArtworks(filtered, 'artworks');
+    }
+
+    function setupStatusFilter() {
+      document.querySelectorAll('.status-legend__filter').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activeStatus = btn.dataset.status;
+          document.querySelectorAll('.status-legend__filter').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          renderArtworks();
+        });
       });
     }
 
-    renderArtworks();
+    loadData().then(({ artworks }) => {
+      allArtworks = artworks
+        .filter(a => a.collection === 'bila-collection')
+        .sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0));
+      renderArtworks();
+      setupStatusFilter();
+    });
+
     document.addEventListener('languageChanged', renderArtworks);
   </script>
 </body>

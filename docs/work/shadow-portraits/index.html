@@ -44,10 +44,11 @@
     <main>
       <section class="nk-section">
         <div class="nk-container--content">
-          <div class="status-legend">
-            <span class="status-legend__item"><span class="status-dot status-dot--available"></span><span data-i18n="available">Eskuragarri</span></span>
-            <span class="status-legend__item"><span class="status-dot status-dot--reserved"></span><span data-i18n="reserved">Erakusketarako erreserbatua</span></span>
-            <span class="status-legend__item"><span class="status-dot status-dot--sold"></span><span data-i18n="sold">Saldua</span></span>
+          <div class="status-legend" id="status-legend">
+            <button class="status-legend__filter status-legend__filter--all active" data-status="all" data-i18n="all">Guztiak</button>
+            <button class="status-legend__filter" data-status="available"><span class="status-dot status-dot--available"></span><span data-i18n="available">Eskuragarri</span></button>
+            <button class="status-legend__filter" data-status="reserved"><span class="status-dot status-dot--reserved"></span><span data-i18n="reserved">Erakusketarako erreserbatua</span></button>
+            <button class="status-legend__filter" data-status="sold"><span class="status-dot status-dot--sold"></span><span data-i18n="sold">Saldua</span></button>
           </div>
           <div id="artworks" class="nk-grid-2@md nk-gap--large"></div>
         </div>
@@ -95,17 +96,35 @@
 
     window.nakApp = { openDrawer, closeDrawer, changeMainImage, filterByTopic, clearFilter };
 
+    let allShadowArtworks = [];
+    let activeStatus = 'all';
+
     async function render() {
       await loadData();
       const artworks = getArtworksByCollection('shadow-portraits');
-      displayArtworks(artworks);
+      allShadowArtworks = artworks;
+      const toDisplay = activeStatus === 'all' ? artworks : artworks.filter(a => a.status === activeStatus);
+      displayArtworks(toDisplay);
       updateFilterDisplay();
+    }
+
+    function setupStatusFilter() {
+      document.querySelectorAll('.status-legend__filter').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activeStatus = btn.dataset.status;
+          document.querySelectorAll('.status-legend__filter').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const toDisplay = activeStatus === 'all' ? allShadowArtworks : allShadowArtworks.filter(a => a.status === activeStatus);
+          displayArtworks(toDisplay);
+        });
+      });
     }
 
     async function init() {
       await initI18n();
       await render();
       setupDrawer();
+      setupStatusFilter();
       document.addEventListener('languageChanged', render);
       document.addEventListener('filterChanged', render);
     }

@@ -346,9 +346,12 @@ body {
   padding-bottom: var(--medium);
   border-bottom: 1px solid var(--color--k-8);
   justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.status-legend__item {
+.status-legend__item,
+.status-legend__filter {
   display: flex;
   align-items: center;
   gap: var(--small);
@@ -356,6 +359,33 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--color--k-4);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: var(--font-machine);
+  transition: color 0.2s;
+}
+
+.status-legend__filter:hover {
+  color: var(--color--k-2);
+}
+
+.status-legend__filter.active {
+  color: var(--color--k-2);
+  font-weight: 700;
+}
+
+.status-legend__filter--all {
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--color--k-6) !important;
+  color: var(--color--k-4);
+}
+
+.status-legend__filter--all.active {
+  background: var(--color--k-2);
+  border-color: var(--color--k-2) !important;
+  color: var(--color--k-10);
 }
 
 /* Status dot */
