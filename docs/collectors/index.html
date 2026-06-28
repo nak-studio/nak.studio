@@ -246,17 +246,17 @@
 
       let specialAccess = sessionStorage.getItem("collector-special") === "1";
 
-      function renderPriceList() {
-        const artworks = state.getArtworks().slice().sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0));
-        const container = document.getElementById("price-list");
-        if (!container || artworks.length === 0) return;
+      let allCollectorArtworks = [];
+      let activeCollectorStatus = "all";
 
-        let html = '<div class="status-legend" style="margin-bottom: var(--large);">'
-          + `<span class="status-legend__item"><span class="status-dot status-dot--available"></span><span>${escapeHtml(t("available"))}</span></span>`
-          + `<span class="status-legend__item"><span class="status-dot status-dot--reserved"></span><span>${escapeHtml(t("reserved"))}</span></span>`
-          + `<span class="status-legend__item"><span class="status-dot status-dot--sold"></span><span>${escapeHtml(t("sold"))}</span></span>`
-          + '</div>';
-        html += '<table class="price-table">';
+      function renderTable() {
+        const container = document.getElementById("price-list-table");
+        if (!container) return;
+        const artworks = activeCollectorStatus === "all"
+          ? allCollectorArtworks
+          : allCollectorArtworks.filter(a => a.status === activeCollectorStatus);
+
+        let html = '<table class="price-table">';
         html += `<thead><tr>
           <th></th>
           <th>${escapeHtml(t("artworks"))}</th>
@@ -268,28 +268,29 @@
         </tr></thead><tbody>`;
 
         artworks.forEach((a, idx) => {
-          const statusKey =
-            a.status === "private" ? "privateCollection" : a.status;
-          const dotClass =
-            a.status === "sold" || a.status === "private"
-              ? "status-dot--sold"
-              : a.status === "reserved"
-              ? "status-dot--reserved"
-              : "status-dot--available";
+          const origIdx = allCollectorArtworks.indexOf(a);
+          const statusKey = a.status === "private" ? "privateCollection" : a.status;
+          const dotClass = a.status === "sold" || a.status === "private"
+            ? "status-dot--sold"
+            : a.status === "reserved"
+            ? "status-dot--reserved"
+            : "status-dot--available";
           const dims = a.dimensions
             ? `${a.dimensions.width} × ${a.dimensions.height} ${a.dimensions.unit}`
             : "—";
-          const priceDisplay = a.price
-            ? (specialAccess ? `<span class="price--striked">${a.price.amount} ${a.price.currency}</span>` : `${a.price.amount} ${a.price.currency}`)
-            : "—";
+          const priceDisplay = a.status === "reserved"
+            ? "—"
+            : a.price
+              ? (specialAccess ? `<span class="price--striked">${a.price.amount} ${a.price.currency}</span>` : `${a.price.amount} ${a.price.currency}`)
+              : "—";
           const specialCell = specialAccess
             ? `<td data-label="${escapeHtml(t("specialPrice"))}" class="price-table__special">${a.price && a.status === "available" ? `${Math.round(a.price.amount * 0.8)} ${a.price.currency}` : "—"}</td>`
             : "";
           const thumb = a.images && a.images.length > 0 ? a.images[0].url : "";
 
-          html += `<tr>
-            <td class="price-table__thumb"><img src="${escapeHtml(thumb)}" alt="${escapeHtml(a.title)}" data-artwork-idx="${idx}" style="cursor:pointer;"></td>
-            <td data-artwork-idx="${idx}" style="cursor:pointer;"><div class="price-table__title">${escapeHtml(a.title)}${a.isNew ? `<span class="badge-new">${escapeHtml(t('new'))}</span>` : ''}</div></td>
+          html += `<tr data-artwork-idx="${origIdx}" style="cursor:pointer;">
+            <td class="price-table__thumb"><img src="${escapeHtml(thumb)}" alt="${escapeHtml(a.title)}"></td>
+            <td><div class="price-table__title">${escapeHtml(a.title)}${a.isNew ? `<span class="badge-new">${escapeHtml(t('new'))}</span>` : ''}</div></td>
             <td data-label="${escapeHtml(t("medium"))}">${escapeHtml((a.medium || []).join(", "))}</td>
             <td data-label="${escapeHtml(t("dimensions"))}">${dims}</td>
             <td data-label="${escapeHtml(t("price"))}">${priceDisplay}</td>
@@ -301,26 +302,45 @@
         html += "</tbody></table>";
         container.innerHTML = html;
 
-        // Add click handlers to images and titles
-        container
-          .querySelectorAll("img[data-artwork-idx], td[data-artwork-idx]")
-          .forEach((el) => {
-            el.addEventListener("click", (e) => {
-              const idx = el.getAttribute("data-artwork-idx");
-              if (idx !== null) {
-                openDrawer(artworks[idx]);
-              }
-            });
+        container.querySelectorAll("tr[data-artwork-idx]").forEach((el) => {
+          el.addEventListener("click", () => {
+            const idx = el.getAttribute("data-artwork-idx");
+            if (idx !== null) openDrawer(allCollectorArtworks[idx]);
           });
+        });
+      }
+
+      function renderPriceList() {
+        allCollectorArtworks = state.getArtworks().slice().sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0));
+        const container = document.getElementById("price-list");
+        if (!container || allCollectorArtworks.length === 0) return;
+
+        let html = '<div class="status-legend" style="margin-bottom: var(--large);">'
+          + `<button class="status-legend__filter status-legend__filter--all active" data-status="all">${escapeHtml(t("all"))}</button>`
+          + `<button class="status-legend__filter" data-status="available"><span class="status-dot status-dot--available"></span><span>${escapeHtml(t("available"))}</span></button>`
+          + `<button class="status-legend__filter" data-status="reserved"><span class="status-dot status-dot--reserved"></span><span>${escapeHtml(t("reserved"))}</span></button>`
+          + `<button class="status-legend__filter" data-status="sold"><span class="status-dot status-dot--sold"></span><span>${escapeHtml(t("sold"))}</span></button>`
+          + '</div>'
+          + '<div id="price-list-table"></div>';
+
+        container.innerHTML = html;
+
+        container.querySelectorAll(".status-legend__filter").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            activeCollectorStatus = btn.dataset.status;
+            container.querySelectorAll(".status-legend__filter").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            renderTable();
+          });
+        });
+
+        renderTable();
+
         // Ensure drawer interactive features/styles are available
         window.bilaApp = window.bilaApp || {};
         document.getElementById("close-drawer").onclick = () => {
-          document
-            .getElementById("artwork-drawer")
-            .classList.remove("nk-is-open");
-          document
-            .getElementById("drawer-dimmer")
-            .classList.remove("nk-is-open");
+          document.getElementById("artwork-drawer").classList.remove("nk-is-open");
+          document.getElementById("drawer-dimmer").classList.remove("nk-is-open");
         };
         import("../portfolio/modules/drawer.js").then((mod) => {
           window.bilaApp.changeMainImage = mod.changeMainImage;
