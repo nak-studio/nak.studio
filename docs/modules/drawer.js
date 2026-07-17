@@ -181,6 +181,11 @@ function buildDrawerContent(artwork, startIndex) {
     html += `<div class="drawer-detail"><dt>${escapeHtml(t('dimensions'))}</dt><dd>${artwork.dimensions.width} × ${artwork.dimensions.height} ${artwork.dimensions.unit}</dd></div>`;
   }
 
+  // Location
+  if (artwork.location) {
+    html += `<div class="drawer-detail"><dt>${escapeHtml(t('location'))}</dt><dd>${escapeHtml(artwork.location)}</dd></div>`;
+  }
+
   // Price (hidden for reserved)
   if (artwork.price && artwork.status !== 'reserved') {
     html += `<div class="drawer-detail"><dt>${escapeHtml(t('price') || 'Price')}</dt><dd>${artwork.price.amount} ${artwork.price.currency}</dd></div>`;

@@ -1,6 +1,126 @@
 {
   "artworks": [
     {
+      "id": "zb-01",
+      "collection": "zb-collection",
+      "medium": ["watercolor"],
+      "topics": [],
+      "location": "Amsterdam",
+      "dimensions": { "width": 9.8, "height": 13.7, "unit": "cm" },
+      "edition": { "type": "original", "number": null },
+      "images": [
+        { "id": "zb-01-crop", "url": "assets/artworks/zb-collection/zb-01-crop.jpeg", "alt": "z/b 01 crop", "type": "main", "order": 1 },
+        { "id": "zb-01-context", "url": "assets/artworks/zb-collection/zb-01-context.jpeg", "alt": "z/b 01 context", "type": "context", "order": 2 }
+      ],
+      "isNew": true,
+      "status": "available",
+      "visibility": "public",
+      "slug": "zb-01",
+      "paintedAt": "2026 July",
+      "createdAt": "2026-07-17",
+      "updatedAt": "2026-07-17",
+      "translations": {
+        "eu": { "title": "z/b.01", "description": "", "medium": "Akuarela paperean" },
+        "en": { "title": "z/b.01", "description": "", "medium": "Watercolor on paper" }
+      }
+    },
+    {
+      "id": "zb-02",
+      "collection": "zb-collection",
+      "medium": ["watercolor"],
+      "topics": [],
+      "location": "Amsterdam",
+      "dimensions": { "width": 8.3, "height": 12.7, "unit": "cm" },
+      "edition": { "type": "original", "number": null },
+      "images": [
+        { "id": "zb-02-crop", "url": "assets/artworks/zb-collection/zb-02-crop.jpeg", "alt": "z/b 02 crop", "type": "main", "order": 1 },
+        { "id": "zb-02-context", "url": "assets/artworks/zb-collection/zb-02-context.jpeg", "alt": "z/b 02 context", "type": "context", "order": 2 }
+      ],
+      "isNew": true,
+      "status": "available",
+      "visibility": "public",
+      "slug": "zb-02",
+      "paintedAt": "2026 July",
+      "createdAt": "2026-07-17",
+      "updatedAt": "2026-07-17",
+      "translations": {
+        "eu": { "title": "z/b.02", "description": "", "medium": "Akuarela paperean" },
+        "en": { "title": "z/b.02", "description": "", "medium": "Watercolor on paper" }
+      }
+    },
+    {
+      "id": "zb-03",
+      "collection": "zb-collection",
+      "medium": ["watercolor"],
+      "topics": [],
+      "location": "Amsterdam",
+      "dimensions": { "width": 8.3, "height": 12.7, "unit": "cm" },
+      "edition": { "type": "original", "number": null },
+      "images": [
+        { "id": "zb-03-crop", "url": "assets/artworks/zb-collection/zb-03-crop.jpeg", "alt": "z/b 03 crop", "type": "main", "order": 1 },
+        { "id": "zb-03-context", "url": "assets/artworks/zb-collection/zb-03-context.jpeg", "alt": "z/b 03 context", "type": "context", "order": 2 }
+      ],
+      "isNew": true,
+      "status": "available",
+      "visibility": "public",
+      "slug": "zb-03",
+      "paintedAt": "2026 July",
+      "createdAt": "2026-07-17",
+      "updatedAt": "2026-07-17",
+      "translations": {
+        "eu": { "title": "z/b.03", "description": "", "medium": "Akuarela paperean" },
+        "en": { "title": "z/b.03", "description": "", "medium": "Watercolor on paper" }
+      }
+    },
+    {
+      "id": "zb-04",
+      "collection": "zb-collection",
+      "medium": ["watercolor"],
+      "topics": [],
+      "location": "Amsterdam",
+      "dimensions": { "width": 8.3, "height": 12.7, "unit": "cm" },
+      "edition": { "type": "original", "number": null },
+      "images": [
+        { "id": "zb-04-crop", "url": "assets/artworks/zb-collection/zb-04-crop.jpeg", "alt": "z/b 04 crop", "type": "main", "order": 1 },
+        { "id": "zb-04-context", "url": "assets/artworks/zb-collection/zb-04-context.jpeg", "alt": "z/b 04 context", "type": "context", "order": 2 }
+      ],
+      "isNew": true,
+      "status": "available",
+      "visibility": "public",
+      "slug": "zb-04",
+      "paintedAt": "2026 July",
+      "createdAt": "2026-07-17",
+      "updatedAt": "2026-07-17",
+      "translations": {
+        "eu": { "title": "z/b.04", "description": "", "medium": "Akuarela paperean" },
+        "en": { "title": "z/b.04", "description": "", "medium": "Watercolor on paper" }
+      }
+    },
+    {
+      "id": "zb-05",
+      "collection": "zb-collection",
+      "medium": ["watercolor"],
+      "topics": [],
+      "location": "Amsterdam",
+      "dimensions": { "width": 8.3, "height": 12.7, "unit": "cm" },
+      "edition": { "type": "original", "number": null },
+      "images": [
+        { "id": "zb-05-crop", "url": "assets/artworks/zb-collection/zb-05-crop.jpeg", "alt": "z/b 05 crop", "type": "main", "order": 1 },
+        { "id": "zb-05-context", "url": "assets/artworks/zb-collection/zb-05-context.jpeg", "alt": "z/b 05 context", "type": "context", "order": 2 }
+      ],
+      "isNew": true,
+      "status": "available",
+      "visibility": "public",
+      "slug": "zb-05",
+      "paintedAt": "2026 July",
+      "createdAt": "2026-07-17",
+      "updatedAt": "2026-07-17",
+      "translations": {
+        "eu": { "title": "z/b.05", "description": "", "medium": "Akuarela paperean" },
+        "en": { "title": "z/b.05", "description": "", "medium": "Watercolor on paper" }
+      }
+    },
+    {
       "id": "bila-20",
       "collection": "bila-collection",
       "medium": [

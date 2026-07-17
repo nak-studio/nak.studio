@@ -11,6 +11,7 @@
     "internalGaze": "Bila Bilduma",
     "bilaCollection": "Bila Bilduma",
     "shadowPortraits": "Itzalen Erretratuak",
+    "zbCollection": "z/b Bilduma",
     "watercolors": "Akuarelak",
     "canvases": "Mihiseak",
     "artworks": "Artelanak",
@@ -71,6 +72,7 @@
     "eventTitleRomaExpo": "Bila Bildumaren erakusketa — Erroma",
     "eventDateRomaExpo": "4 – 10 Abendua 2026",
     "authenticityTitle": "Benetakotasuna",
+    "location": "Kokapena:",
     "authenticityStatement": "Lan guztiak nire esku sortutako originalak dira. Gardentasuna baloratzen dut — edozein proiekturen prozesua edo iturri-fitxategiak ikusi nahi badituzu, eskatu besterik ez!"
   },
   "en": {
@@ -85,6 +87,7 @@
     "internalGaze": "Bila Collection",
     "bilaCollection": "Bila Collection",
     "shadowPortraits": "Shadow Portraits",
+    "zbCollection": "z/b Collection",
     "watercolors": "Watercolors",
     "canvases": "Canvases",
     "artworks": "Artworks",
@@ -143,6 +146,7 @@
     "eventDateTallerPinturaGrande": "22 – 23 January 2027",    "all": "All",    "eventTitleRomaExpo": "Exhibition of Bila Collection — Rome",
     "eventDateRomaExpo": "4 – 10 December 2026",
     "authenticityTitle": "100% Original Work",
+    "location": "Location:",
     "authenticityStatement": "Everything you see here is my own authentic and original work. I value transparency—if you want to see the process behind any project, just ask, I usually keep the photos of the creative process!"
   }
 }

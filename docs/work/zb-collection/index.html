@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>z/b Collection — nak.studio</title>
+    <link rel="shortcut icon" href="../../assets/favicon.ico">
+    <link rel="stylesheet" href="../../vendor/nakds.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+  <div class="page-wrapper">
+
+    <div id="site-nav"></div>
+  <script type="module">
+    import { initI18n } from '../../modules/i18n.js';
+    fetch('../../partials/nav.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('site-nav').innerHTML = html;
+        var path = window.location.pathname;
+        var docsIdx = path.indexOf('/docs/');
+        var afterDocs = path.slice(docsIdx + 6);
+        var depth = afterDocs.split('/').length - 1;
+        var prefix = depth === 0 ? '' : '../'.repeat(depth);
+
+        var nav = document.getElementById('site-nav');
+        if (nav) {
+          var links = [
+            { sel: '.nav-home', file: 'index.html' },
+            { sel: '.nav-work', file: 'work/index.html' },
+            { sel: '.nav-collectors', file: 'collectors/index.html' },
+            { sel: '.nav-agenda', file: 'agenda/index.html' },
+            { sel: '.nav-about', file: 'about/index.html' }
+          ];
+          links.forEach(link => {
+            var el = nav.querySelector(link.sel);
+            if (el) {
+              el.setAttribute('href', prefix + link.file);
+              el.classList.remove('active');
+            }
+          });
+          if (window.location.pathname.includes('zb-collection')) {
+            var el = nav.querySelector('.nav-work');
+            if (el) el.classList.add('active');
+          }
+        }
+        initI18n();
+      });
+  </script>
+
+    <header class="page-header">
+      <h1 data-i18n="zbCollection">z/b Bilduma</h1>
+      <p data-i18n="watercolors">Akuarelak</p>
+    </header>
+
+    <main>
+      <section class="nk-section">
+        <div class="nk-container--content">
+          <div class="status-legend" id="status-legend">
+            <button class="status-legend__filter status-legend__filter--all active" data-status="all" data-i18n="all">Guztiak</button>
+            <button class="status-legend__filter" data-status="available"><span class="status-dot status-dot--available"></span><span data-i18n="available">Eskuragarri</span></button>
+            <button class="status-legend__filter" data-status="reserved"><span class="status-dot status-dot--reserved"></span><span data-i18n="reserved">Erakusketarako erreserbatua</span></button>
+            <button class="status-legend__filter" data-status="sold"><span class="status-dot status-dot--sold"></span><span data-i18n="sold">Saldua</span></button>
+          </div>
+          <div id="artworks" class="nk-grid-3@md nk-gap--large"></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Drawer -->
+    <div id="drawer-dimmer" class="nk-dimmer"></div>
+    <div id="artwork-drawer" class="nk-drawer">
+      <button id="close-drawer" class="nk-button" style="margin-bottom: var(--large);" data-i18n="close">✕ Itxi</button>
+      <div id="drawer-content"></div>
+    </div>
+
+    <footer class="site-footer nk-footer nk-bg--k-10 nk-text-align--center">
+      <div class="nk-container--content">
+        <div class="footer-contact">
+          <a href="mailto:naiara@nak.studio">naiara@nak.studio</a>
+          <span class="footer-dot"></span>
+          <a href="https://instagram.com/nak.studio" target="_blank" rel="noopener">@nak.studio</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 nak.studio &mdash; Basque Country</p>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="../../modules/artworkRenderer.js"></script>
+  <script type="module" src="../../modules/i18n.js"></script>
+  <script type="module">
+    import { initConsent } from '../../modules/consent.js';
+    initConsent();
+  </script>
+  <script type="module">
+    import { loadData } from '../../modules/dataService.js';
+    import { displayArtworks } from '../../modules/artworkRenderer.js';
+    import { openDrawer } from '../../modules/drawer.js';
+
+    let allArtworks = [];
+    let activeStatus = 'all';
+
+    function renderArtworks() {
+      const filtered = activeStatus === 'all'
+        ? allArtworks
+        : allArtworks.filter(a => a.status === activeStatus);
+      displayArtworks(filtered, 'artworks');
+    }
+
+    function setupStatusFilter() {
+      document.querySelectorAll('.status-legend__filter').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activeStatus = btn.dataset.status;
+          document.querySelectorAll('.status-legend__filter').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          renderArtworks();
+        });
+      });
+    }
+
+    loadData().then(({ artworks }) => {
+      allArtworks = artworks
+        .filter(a => a.collection === 'zb-collection')
+        .sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0));
+      renderArtworks();
+      setupStatusFilter();
+
+      // Auto-open drawer from URL param (e.g. NFC sticker link)
+      const artworkId = new URLSearchParams(window.location.search).get('artwork');
+      if (artworkId) {
+        const artwork = allArtworks.find(a => a.id === artworkId);
+        if (artwork) openDrawer(artwork);
+      }
+    });
+
+    document.addEventListener('languageChanged', renderArtworks);
+  </script>
+</body>
+</html>
