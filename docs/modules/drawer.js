@@ -34,6 +34,11 @@ export function openDrawer(artwork, startIndex = 0) {
   if (closeBtn) {
     closeBtn.onclick = closeDrawer;
   }
+
+  // Update URL so this drawer can be linked directly (e.g. from NFC sticker)
+  const url = new URL(window.location.href);
+  url.searchParams.set('artwork', artwork.id);
+  history.replaceState(null, '', url.toString());
 }
 
 export function closeDrawer() {
@@ -41,6 +46,11 @@ export function closeDrawer() {
   const dimmer = getElement(DOM_IDS.DIMMER);
   if (drawer) drawer.classList.remove('nk-is-open');
   if (dimmer) dimmer.classList.remove('nk-is-open');
+
+  // Remove artwork param from URL
+  const url = new URL(window.location.href);
+  url.searchParams.delete('artwork');
+  history.replaceState(null, '', url.toString());
 }
 
 export function setupDrawer() {
@@ -106,6 +116,9 @@ function buildDrawerContent(artwork, startIndex) {
     html += `<span class="carousel-counter">${startIndex + 1} / ${artwork.images.length}</span>`;
   }
   html += `</div>`;
+
+  // Info column: title + details + authenticity
+  html += `<div class="drawer-info">`;
 
   // Title
   html += `<h2 class="drawer-title">${escapeHtml(artwork.title)}</h2>`;
@@ -174,6 +187,13 @@ function buildDrawerContent(artwork, startIndex) {
   }
 
   html += '</dl>';
+
+  // Authenticity section
+  html += `<div class="drawer-authenticity">`;
+  html += `<h3 class="drawer-authenticity__title">${escapeHtml(t('authenticityTitle'))}</h3>`;
+  html += `<p class="drawer-authenticity__statement">${escapeHtml(t('authenticityStatement'))}</p>`;
+  html += `</div>`;
+  html += `</div>`; // end drawer-info
 
   return html;
 }

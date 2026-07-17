@@ -127,6 +127,13 @@
       setupStatusFilter();
       document.addEventListener('languageChanged', render);
       document.addEventListener('filterChanged', render);
+
+      // Auto-open drawer from URL param (e.g. NFC sticker link)
+      const artworkId = new URLSearchParams(window.location.search).get('artwork');
+      if (artworkId) {
+        const artwork = allShadowArtworks.find(a => a.id === artworkId);
+        if (artwork) openDrawer(artwork);
+      }
     }
 
     init();

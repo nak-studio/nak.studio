@@ -445,6 +445,36 @@ body {
   overflow-x: hidden;
 }
 
+#drawer-content {
+  /* two-column on desktop, single-column on mobile */
+}
+
+@media (min-width: 1024px) {
+  #drawer-content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--x-large);
+  }
+
+  #drawer-content .drawer-carousel {
+    flex: 0 0 60%;
+    margin-inline: 0;
+    max-height: calc(100vh - 8rem);
+    position: sticky;
+    top: 0;
+  }
+
+  #drawer-content .carousel-img {
+    max-height: calc(100vh - 8rem);
+  }
+
+  .drawer-info {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
 #close-drawer {
   width: auto;
   padding: 0.3rem 0.8rem;
@@ -622,6 +652,28 @@ video.carousel-img {
 .drawer-detail .status-dot {
   display: inline-block;
   position: static;
+}
+
+/* Authenticity section */
+.drawer-authenticity {
+  margin-top: var(--x-large);
+  padding-top: var(--large);
+  border-top: 1px solid var(--color--k-7);
+}
+
+.drawer-authenticity__title {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--color--k-5);
+  margin-bottom: var(--medium);
+}
+
+.drawer-authenticity__statement {
+  font-size: 0.85rem;
+  color: var(--color--k-3);
+  line-height: 1.7;
+  font-style: italic;
 }
 
 /* Badges */

@@ -130,6 +130,7 @@
   <script type="module">
     import { loadData } from '../../modules/dataService.js';
     import { displayArtworks } from '../../modules/artworkRenderer.js';
+    import { openDrawer } from '../../modules/drawer.js';
 
     let allArtworks = [];
     let activeStatus = 'all';
@@ -159,6 +160,13 @@
         .sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0));
       renderArtworks();
       setupStatusFilter();
+
+      // Auto-open drawer from URL param (e.g. NFC sticker link)
+      const artworkId = new URLSearchParams(window.location.search).get('artwork');
+      if (artworkId) {
+        const artwork = allArtworks.find(a => a.id === artworkId);
+        if (artwork) openDrawer(artwork);
+      }
     });
 
     document.addEventListener('languageChanged', renderArtworks);
