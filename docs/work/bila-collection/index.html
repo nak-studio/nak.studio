@@ -131,6 +131,8 @@
     import { loadData } from '../../modules/dataService.js';
     import { displayArtworks } from '../../modules/artworkRenderer.js';
     import { openDrawer } from '../../modules/drawer.js';
+    import { initI18n } from '../../modules/i18n.js';
+    import { setupDrawer } from '../../modules/drawer.js';
 
     let allArtworks = [];
     let activeStatus = 'all';
@@ -154,12 +156,15 @@
       });
     }
 
-    loadData().then(({ artworks }) => {
+    async function init() {
+      await initI18n();
+      const { artworks } = await loadData();
       allArtworks = artworks
         .filter(a => a.collection === 'bila-collection')
         .sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0));
       renderArtworks();
       setupStatusFilter();
+      setupDrawer();
 
       // Auto-open drawer from URL param (e.g. NFC sticker link)
       const artworkId = new URLSearchParams(window.location.search).get('artwork');
@@ -167,8 +172,9 @@
         const artwork = allArtworks.find(a => a.id === artworkId);
         if (artwork) openDrawer(artwork);
       }
-    });
+    }
 
+    init();
     document.addEventListener('languageChanged', renderArtworks);
   </script>
 </body>
