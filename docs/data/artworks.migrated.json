@@ -1,6 +1,35 @@
 {
   "artworks": [
     {
+      "id": "zb-06",
+      "collection": "zb-collection",
+      "medium": ["watercolor"],
+      "topics": [],
+      "location": "Bilbao",
+      "dimensions": { "width": 17.9, "height": 25.4, "unit": "cm" },
+      "edition": { "type": "original", "number": null },
+      "images": [
+        { "id": "zb-06-crop", "url": "assets/artworks/zb-collection/zb-06-crop.jpeg", "alt": "z/b 06 crop", "type": "main", "order": 1 },
+        { "id": "zb-06-context", "url": "assets/artworks/zb-collection/zb-06-context.jpeg", "alt": "z/b 06 context", "type": "context", "order": 2 },
+        { "id": "zb-06-detail-1", "url": "assets/artworks/zb-collection/zb-06-detail-1.jpeg", "alt": "z/b 06 detail", "type": "detail", "order": 3 },
+        { "id": "zb-06-detail-2", "url": "assets/artworks/zb-collection/zb-06-detail-2.jpeg", "alt": "z/b 06 detail", "type": "detail", "order": 4 },
+        { "id": "zb-06-detail-3", "url": "assets/artworks/zb-collection/zb-06-detail-3.jpeg", "alt": "z/b 06 detail", "type": "detail", "order": 5 },
+        { "id": "zb-06-detail-4", "url": "assets/artworks/zb-collection/zb-06-detail-4.jpeg", "alt": "z/b 06 detail", "type": "detail", "order": 6 }
+      ],
+      "isNew": true,
+      "status": "available",
+      "price": { "amount": 150, "currency": "EUR" },
+      "visibility": "public",
+      "slug": "zb-06",
+      "paintedAt": "2026 July",
+      "createdAt": "2026-07-18",
+      "updatedAt": "2026-07-18",
+      "translations": {
+        "eu": { "title": "z/b.06", "description": "", "medium": "Akuarela paperean" },
+        "en": { "title": "z/b.06", "description": "", "medium": "Watercolor on paper" }
+      }
+    },
+    {
       "id": "zb-01",
       "collection": "zb-collection",
       "medium": ["watercolor"],
