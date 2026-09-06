@@ -35,7 +35,7 @@
       "medium": ["watercolor"],
       "topics": [],
       "location": "Bilbao",
-      "dimensions": { "width": 38, "height": 13, "unit": "cm" },
+      "dimensions": { "width": 13, "height": 38, "unit": "cm" },
       "edition": { "type": "original", "number": null },
       "images": [
         { "id": "zb-07-crop", "url": "assets/artworks/zb-collection/zb-07-crop.jpeg", "alt": "z/b 07 crop", "type": "main", "order": 1 },
@@ -186,7 +186,7 @@
       "collection": "bila-collection",
       "medium": ["watercolor"],
       "topics": [],
-      "dimensions": { "width": 35.5, "height": 13.5, "unit": "cm" },
+      "dimensions": { "width": 13.5, "height": 35.5, "unit": "cm" },
       "edition": { "type": "original", "number": null },
       "images": [
         { "id": "bila-26-crop", "url": "assets/artworks/bila-26-crop.jpeg", "alt": "Bila 26 crop", "type": "main", "order": 1 },
@@ -211,7 +211,7 @@
       "collection": "bila-collection",
       "medium": ["watercolor"],
       "topics": [],
-      "dimensions": { "width": 56.3, "height": 19.8, "unit": "cm" },
+      "dimensions": { "width": 19.8, "height": 56.3, "unit": "cm" },
       "edition": { "type": "original", "number": null },
       "images": [
         { "id": "bila-25-crop", "url": "assets/artworks/bila-25-crop.jpeg", "alt": "Bila 25 crop", "type": "main", "order": 1 },
@@ -237,7 +237,7 @@
       "collection": "bila-collection",
       "medium": ["watercolor"],
       "topics": [],
-      "dimensions": { "width": 56.3, "height": 19.8, "unit": "cm" },
+      "dimensions": { "width": 19.8, "height": 56.3, "unit": "cm" },
       "edition": { "type": "original", "number": null },
       "images": [
         { "id": "bila-24-crop", "url": "assets/artworks/bila-24-crop.jpeg", "alt": "Bila 24 crop", "type": "main", "order": 1 },

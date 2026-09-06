@@ -208,7 +208,7 @@ body {
   color: white;
   min-height: 300px;
   background-size: cover;
-  background-position: center;
+  background-position: center top;
   transition: transform 0.3s ease;
   max-width: 100%;
 }
