@@ -1,0 +1,9 @@
+{
+  "title": "Her & Her",
+  "subtitle": "Beyond the Lens",
+  "defaultItem": "introduction",
+  "artworksUrl": "",
+  "itemsPath": "items.json",
+  "draftItemsPath": "../../../private-content/her-and-her/items.json",
+  "notFoundMessage": "This dossier item is not available."
+}

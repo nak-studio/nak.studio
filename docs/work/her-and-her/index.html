@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dossier — nak.studio</title>
+  <link rel="shortcut icon" href="../../assets/favicon.ico">
+  <link rel="stylesheet" href="../../vendor/nakds.css">
+  <link rel="stylesheet" href="../../css/site.css">
+  <link rel="stylesheet" href="../../css/dossier.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <div id="site-nav"></div>
+
+    <header class="page-header dossier-header">
+      <p class="dossier-eyebrow" data-i18n="herProjectType">Project dossier</p>
+      <h1 id="dossier-project-title">Project</h1>
+      <p id="dossier-project-subtitle" class="dossier-subtitle"></p>
+      <div id="dossier-project-links" class="dossier-project-links" hidden></div>
+    </header>
+
+    <p id="local-preview-notice" class="dossier-preview-notice" data-i18n="herLocalPreview" hidden>Local draft preview</p>
+
+    <main class="dossier-layout" data-dossier data-dossier-config="dossier.json">
+      <aside class="dossier-index" aria-label="Dossier contents">
+        <nav aria-label="Dossier contents">
+          <ol id="dossier-index-list" class="dossier-index__list"></ol>
+        </nav>
+      </aside>
+
+      <section id="dossier-item-view" class="nk-section dossier-main-content">
+        <div class="nk-container--content dossier-container">
+          <div id="dossier-item-content"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer nk-footer nk-bg--k-10 nk-text-align--center">
+      <div class="nk-container--content">
+        <div class="footer-contact">
+          <a href="mailto:naiara@nak.studio">naiara@nak.studio</a>
+          <span class="footer-dot"></span>
+          <a href="https://instagram.com/nak.studio" target="_blank" rel="noopener">@nak.studio</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 nak.studio &mdash; Basque Country</p>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="../../modules/dossier.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+{
+  "items": [
+    {
+      "id": "introduction",
+      "slug": "introduction",
+      "type": "introduction",
+      "order": 0,
+      "hide_publish": false,
+      "publishedAt": "",
+      "topics": [],
+      "translations": {
+        "eu": {
+          "title": "Sarrera",
+          "heading": "Adierazpen kuratoriala",
+          "summary": "",
+          "blocks": [
+            {
+              "type": "image",
+              "src": "assets/her-and-her-round.webp",
+              "alt": "Her & Her — Beyond the Lens"
+            },
+            {
+              "type": "paragraph",
+              "text": "HER & HER: Beyond the Lens argazki-erretratuaren historian zeharreko bidaia piktorikoa da, elkarrizketa zehatz eta esklusibo baten inguruan eraikia: kameraren atzean dauden emakumeek aurrean dituzten emakumeak erretratatzen dituzte."
+            },
+            {
+              "type": "paragraph",
+              "text": "Belaunaldiz belaunaldi, emakumeen begiradak bazterrean geratu dira, artearen historiari egindako ekarpen sakona itzalpean edo bigarren planoan utzita."
+            },
+            {
+              "type": "paragraph",
+              "text": "Akuarela-sail honek gabezia historiko horri aurre egiten dio emakumeen agentzia erdigunean jarriz. Indarraren, erresilientziaren eta sormen-agintearen ospakizuna da; emakumeek beren baldintzetan emakumeak ikusi, irudikatu eta aintzat hartzearen aldeko aldarria."
+            },
+            {
+              "type": "paragraph",
+              "text": "Erakusketak mende bat baino gehiagoko emakume argazkilarien lana biltzen du. Haien erretratuetan pertsona ospetsuak eta ezezagunak ageri dira, bakoitzaren nortasuna, sentikortasuna eta indarra erakutsiz. Akuarelek jatorrizko argazkien argiak eta itzalak berrinterpretatzen dituzte, eta erretratu bakoitzaren emozioa nabarmentzen dute."
+            },
+            {
+              "type": "paragraph",
+              "text": "Victoriar garaiko giroetatik XX. mendeko lekukotasun dokumentaletara eta argazki-kazetaritzaren gordintasunetik gaur egungo ikuspegietara, HER & HER elkargune indartsua da. Hemen, itzalak argiari forma ematen dio; oharkabean geratutakoa agerian utzi, eta irudia emakumeen presentziaren, oroimenaren eta aliantzaren lekukotasun iraunkor bihurtzen du."
+            }
+          ]
+        },
+        "en": {
+          "title": "Introduction",
+          "heading": "Curatorial statement",
+          "summary": "",
+          "blocks": [
+            {
+              "type": "image",
+              "src": "assets/her-and-her-round.webp",
+              "alt": "Her & Her — Beyond the Lens"
+            },
+            {
+              "type": "paragraph",
+              "text": "HER & HER: Beyond the lens is a pictorial journey through the history of photographic portraiture, built upon a deliberate and exclusive dialogue: women behind the camera capturing women in front of it."
+            },
+            {
+              "type": "paragraph",
+              "text": "For generations, the female gaze was quietly sidelined, its profound contribution to art history kept in the shadows or relegated to the background."
+            },
+            {
+              "type": "paragraph",
+              "text": "This watercolor series confronts that historical omission by placing female agency at its core. It is a celebration of strength, resilience, and creative authority—a fundamental call to champion women seeing, shaping, and honoring women on their own terms."
+            },
+            {
+              "type": "paragraph",
+              "text": "Across more than a century of photography, these artists forged an unbroken lineage of vision, capturing the identity, vulnerability, power, and complexity of figures who shaped global culture. By reinterpreting these iconic portraits through chiaroscuro and the fluidity of pigment, each painting honors the raw architecture of light and the deep psychological charge within each moment."
+            },
+            {
+              "type": "paragraph",
+              "text": "From early Victorian atmospheres and 20th-century documentary testimonies to the raw edge of photojournalism and contemporary visions, HER & HER stands as a powerful space of convergence. Here, shadow gives form to light, making visible what was once overlooked, and transforming the image into a lasting testament of female presence, memory, and alliance."
+            }
+          ]
+        }
+      },
+      "children": []
+    }
+  ]
+}
